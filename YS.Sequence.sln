@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Api", "YS.Seque
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.App", "YS.Sequence.App\YS.Sequence.App.csproj", "{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.Sequence.Impl.SqlServer", "YS.Sequence.Impl.SqlServer\YS.Sequence.Impl.SqlServer.csproj", "{66E6B059-6450-4564-96C1-32E7030EE06D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore", "YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj", "{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer", "YS.Sequence.Impl.EFCore.SqlServer\YS.Sequence.Impl.EFCore.SqlServer.csproj", "{03ACD6DF-3666-456C-B86E-D60088AADC35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.Sequence.Impl.EFCore.MySql", "YS.Sequence.Impl.EFCore.MySql\YS.Sequence.Impl.EFCore.MySql.csproj", "{83D295F5-FC40-4393-8087-0CD466919969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,18 @@ Global
 		{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66E6B059-6450-4564-96C1-32E7030EE06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66E6B059-6450-4564-96C1-32E7030EE06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66E6B059-6450-4564-96C1-32E7030EE06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66E6B059-6450-4564-96C1-32E7030EE06D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03ACD6DF-3666-456C-B86E-D60088AADC35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03ACD6DF-3666-456C-B86E-D60088AADC35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03ACD6DF-3666-456C-B86E-D60088AADC35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03ACD6DF-3666-456C-B86E-D60088AADC35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D295F5-FC40-4393-8087-0CD466919969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D295F5-FC40-4393-8087-0CD466919969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D295F5-FC40-4393-8087-0CD466919969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D295F5-FC40-4393-8087-0CD466919969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

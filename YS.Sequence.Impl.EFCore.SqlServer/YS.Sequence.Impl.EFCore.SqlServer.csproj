@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="YS.DependencyInjection.Base" Version="1.0.9" />
+    <PackageReference Include="YS.EntityFrameworkCore.SqlServer" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YS.Sequence.Core\YS.Sequence.Core.csproj" />
+    <ProjectReference Include="..\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>
