@@ -9,10 +9,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="YS.Knife.WebHosting" Version="1.0.0" />
+    <PackageReference Include="YS.Knife.WebHosting" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YS.Sequence.Api\YS.Sequence.Api.csproj" />
     <ProjectReference Include="..\YS.Sequence.Impl.EFCore.SqlServer\YS.Sequence.Impl.EFCore.SqlServer.csproj" />
   </ItemGroup>
 

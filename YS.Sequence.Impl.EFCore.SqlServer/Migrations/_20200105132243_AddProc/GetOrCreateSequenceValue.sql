@@ -1,7 +1,10 @@
-create procedure GetOrCreateSequenceValue 
+CREATE procedure GetOrCreateSequenceValue 
 (
   @seqenceName varchar(128),
-  @currentValue bigint output
+  @currentValue bigint output,
+  @startValue bigint = 1,
+  @endValue bigint = null,
+  @step int =1
 )
 AS
 BEGIN
@@ -18,8 +21,8 @@ BEGIN
  
  IF @flag IS NULL--说明没有找到记录
  BEGIN
-   INSERT INTO Sequences([Name]) VALUES(@seqenceName) --插入序列
-   UPDATE Sequence
+   INSERT INTO Sequences([Id],[Name],StartValue,EndValue,Step) VALUES(newid(), @seqenceName,@startValue,@endValue,@step) --插入序列
+   UPDATE Sequences
    SET
     @flag=1,
     @currentValue= ISNULL (CurrentValue,StartValue),
@@ -33,4 +36,3 @@ BEGIN
 
  RETURN @flag 
 END
-go
