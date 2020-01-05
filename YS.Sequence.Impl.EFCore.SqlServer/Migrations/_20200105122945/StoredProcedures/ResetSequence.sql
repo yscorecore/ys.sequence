@@ -6,7 +6,7 @@ AS
 BEGIN
  UPDATE Sequences
  SET CurrentValue = NULL 
- WHERE SequenceName=@seqenceName
+ WHERE [Name]=@seqenceName
  RETURN @@ROWCOUNT
 END
 go

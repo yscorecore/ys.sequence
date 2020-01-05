@@ -119,24 +119,21 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CreateSequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\createsequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>createsequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="DeleteSequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\deletesequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
-  </data>
-  <data name="ExistsSequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\functions\existssequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>deletesequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="GetOrCreateSequenceValue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\getorcreatesequencevalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>getorcreatesequencevalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="GetSequenceInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\getsequenceinfo.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>getsequenceinfo.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="GetSequenceValue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\getsequencevalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>getsequencevalue.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
   <data name="ResetSequence" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\storedprocedures\resetsequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+    <value>resetsequence.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
 </root>

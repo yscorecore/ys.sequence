@@ -4,7 +4,7 @@ CREATE procedure DeleteSequence
 )
 as
 begin
- delete Sequences  where SequenceName=@seqenceName
+ delete Sequences  where [Name]=@seqenceName
  return @@rowcount
 end
 go

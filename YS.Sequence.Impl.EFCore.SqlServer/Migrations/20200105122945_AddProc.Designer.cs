@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YS.Sequence.Impl.EFCore.SqlServer;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerSequenceContext))]
-    partial class SqlServerSequenceContextModelSnapshot : ModelSnapshot
+    [Migration("20200105122945_AddProc")]
+    partial class AddProc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
+namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredProcedures {
     using System;
     
     
@@ -39,7 +39,8 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YS.Sequence.Impl.EFCore.SqlServer.Migrations.Procs", typeof(Procs).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredProcedures.Pro" +
+                            "cs", typeof(Procs).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -82,8 +83,8 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///    RAISERROR(&apos;The @step should not be null.&apos;,11,1)
         ///    RETURN 0
         ///   END 
-        ///   IF ExistsSequence(@seqenceName)=1 BEGIN
-        ///    R [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   IF dbo.ExistsSequence(@seqenceName)=1 BEGIN
+        ///    RAISE [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string CreateSequence {
             get {
@@ -98,7 +99,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///)
         ///as
         ///begin
-        /// delete Sequence  where SequenceName=@seqenceName
+        /// delete Sequences  where [Name]=@seqenceName
         /// return @@rowcount
         ///end
         ///go 的本地化字符串。
@@ -106,26 +107,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         internal static string DeleteSequence {
             get {
                 return ResourceManager.GetString("DeleteSequence", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 create function ExistsSequence
-        ///(
-        /// @seqenceName varchar(100) 
-        ///)
-        ///RETURNS int
-        ///AS
-        ///BEGIN
-        /// DECLARE @count int
-        /// SELECT @count=COUNT(SequenceName) FROM Sequence WHERE SequenceName=@seqenceName
-        /// RETURN @count
-        ///END
-        ///go 的本地化字符串。
-        /// </summary>
-        internal static string ExistsSequence {
-            get {
-                return ResourceManager.GetString("ExistsSequence", resourceCulture);
             }
         }
         
@@ -138,7 +119,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///AS
         ///BEGIN
         /// DECLARE @tmp bigint,@flag int 
-        /// UPDATE Sequence
+        /// UPDATE Sequences
         /// SET
         ///  @flag=1,
         ///  @currentValue= ISNULL (CurrentValue,StartValue),
@@ -146,11 +127,11 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///  CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
         ///      WHEN  @tmp&gt;EndValue THEN @tmp%EndValue+StartValue-1 
         ///      ELSE @tmp END
-        /// WHERE SequenceName=@seqenceName 
+        /// WHERE [Name]=@seqenceName 
         /// 
         /// IF @flag IS NULL--说明没有找到记录
         /// BEGIN
-        ///   INSERT INTO Sequence(SequenceName)  [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///   INSERT INTO Sequences([Name]) VALUES(@seqenceName) - [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string GetOrCreateSequenceValue {
             get {
@@ -165,7 +146,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///)
         ///AS
         ///BEGIN
-        /// SELECT * FROM Sequence WHERE SequenceName=@seqenceName
+        /// SELECT * FROM Sequences WHERE [Name]=@seqenceName
         /// RETURN @@ROWCOUNT
         ///END
         ///go 的本地化字符串。
@@ -185,7 +166,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///AS
         ///BEGIN
         /// DECLARE @tmp bigint,@flag int 
-        /// UPDATE Sequence
+        /// UPDATE Sequences
         /// SET
         ///  @flag=1,
         ///  @currentValue= ISNULL (CurrentValue,StartValue),
@@ -193,7 +174,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///  CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
         ///      WHEN  @tmp&gt;EndValue THEN @tmp%EndValue+StartValue-1 
         ///      ELSE @tmp END
-        /// WHERE SequenceName=@seqenceName 
+        /// WHERE [Name]=@seqenceName 
         /// RETURN @flag
         ///END
         ///go 的本地化字符串。
@@ -211,9 +192,9 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations {
         ///)
         ///AS
         ///BEGIN
-        /// UPDATE Sequence
+        /// UPDATE Sequences
         /// SET CurrentValue = NULL 
-        /// WHERE SequenceName=@seqenceName
+        /// WHERE [Name]=@seqenceName
         /// RETURN @@ROWCOUNT
         ///END
         ///go 的本地化字符串。

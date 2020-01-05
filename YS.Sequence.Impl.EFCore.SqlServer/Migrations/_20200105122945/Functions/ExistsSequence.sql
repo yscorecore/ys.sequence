@@ -6,7 +6,7 @@ RETURNS int
 AS
 BEGIN
  DECLARE @count int
- SELECT @count=COUNT(SequenceName) FROM Sequences WHERE SequenceName=@seqenceName
+ SELECT @count=COUNT([Name]) FROM Sequences WHERE [Name]=@seqenceName
  RETURN @count
 END
 go

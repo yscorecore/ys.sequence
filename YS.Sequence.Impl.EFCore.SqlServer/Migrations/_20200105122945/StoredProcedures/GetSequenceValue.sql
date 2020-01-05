@@ -14,7 +14,7 @@ BEGIN
   CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
       WHEN  @tmp>EndValue THEN @tmp%EndValue+StartValue-1 
       ELSE @tmp END
- WHERE SequenceName=@seqenceName 
+ WHERE [Name]=@seqenceName 
  RETURN @flag
 END
 go

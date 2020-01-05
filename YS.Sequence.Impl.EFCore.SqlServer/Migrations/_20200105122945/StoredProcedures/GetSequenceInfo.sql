@@ -4,7 +4,7 @@ create procedure GetSequenceInfo
 )
 AS
 BEGIN
- SELECT * FROM Sequences WHERE SequenceName=@seqenceName
+ SELECT * FROM Sequences WHERE [Name]=@seqenceName
  RETURN @@ROWCOUNT
 END
 go

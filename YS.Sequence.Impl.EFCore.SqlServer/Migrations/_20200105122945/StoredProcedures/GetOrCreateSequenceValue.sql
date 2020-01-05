@@ -14,11 +14,11 @@ BEGIN
   CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
       WHEN  @tmp>EndValue THEN @tmp%EndValue+StartValue-1 
       ELSE @tmp END
- WHERE SequenceName=@seqenceName 
+ WHERE [Name]=@seqenceName 
  
  IF @flag IS NULL--说明没有找到记录
  BEGIN
-   INSERT INTO Sequences(SequenceName) VALUES(@seqenceName) --插入序列
+   INSERT INTO Sequences([Name]) VALUES(@seqenceName) --插入序列
    UPDATE Sequence
    SET
     @flag=1,
@@ -27,7 +27,7 @@ BEGIN
     CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
         WHEN  @tmp>EndValue THEN @tmp%EndValue+StartValue-1 
         ELSE @tmp END
-   WHERE SequenceName=@seqenceName    
+   WHERE [Name]=@seqenceName    
    
  END
 

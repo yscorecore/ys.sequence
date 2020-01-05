@@ -19,13 +19,13 @@ IF @seqenceName IS NULL BEGIN
     RAISERROR('The @step should not be null.',11,1)
     RETURN 0
    END 
-   IF ExistsSequence(@seqenceName)=1 BEGIN
+   IF dbo.ExistsSequence(@seqenceName)=1 BEGIN
     RAISERROR('The name [%s] sequence already exists.',14,1,@seqenceName)  
     RETURN 0
    END
    
-   INSERT INTO Sequences(SequenceName,StartValue,Step,EndValue)
-   VALUES(@seqenceName,@startValue,@step,@EndValue)
+   INSERT INTO Sequences([Id],[Name],StartValue,Step,EndValue)
+   VALUES(newid(),@seqenceName,@startValue,@step,@EndValue)
    
    RETURN @@ROWCOUNT
 end
