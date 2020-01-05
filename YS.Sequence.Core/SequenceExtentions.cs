@@ -4,9 +4,9 @@ namespace YS.Sequence
 {
     public static class SequenceExtentions
     {
-        public static Task<long> GetValueOrCreateAsync(this ISequenceService sequenceService, string key, long startValue = 1L, long step = 1, long? endValue = null)
+        public static Task<long> GetValueOrCreateAsync(this ISequenceService sequenceService, string name, long startValue = 1L, long step = 1, long? endValue = null)
         {
-            return sequenceService.GetValueOrCreateAsync(key, new SequenceInfo
+            return sequenceService.GetValueOrCreateAsync(name, new SequenceInfo
             {
                 StartValue = startValue,
                 Step = 1,

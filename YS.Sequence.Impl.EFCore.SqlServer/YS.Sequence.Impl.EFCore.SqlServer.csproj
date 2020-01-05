@@ -18,4 +18,19 @@
     <ProjectReference Include="..\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Migrations\Procs.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Procs.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\Procs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Procs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

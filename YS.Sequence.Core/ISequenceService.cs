@@ -7,11 +7,11 @@ namespace YS.Sequence
 {
     public interface ISequenceService
     {
-        Task<long> GetValueAsync(string key);
-        Task CreateSequence(string key, SequenceInfo sequenceInfo);
-        Task<long> GetValueOrCreateAsync(string key, SequenceInfo sequenceInfo);
-        Task ResetAsync(string key);
-        Task<bool> RemoveAsync(string key);
-        Task<bool> ExistsAsync(string key);
+        Task<long> GetValueAsync(string name);
+        Task CreateSequence(string name, SequenceInfo sequenceInfo);
+        Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo);
+        Task ResetAsync(string name);
+        Task<bool> RemoveAsync(string name);
+        Task<bool> ExistsAsync(string name);
     }
 }

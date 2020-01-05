@@ -15,33 +15,33 @@ namespace YS.Sequence.Impl.SqlServer
             this.sequenceContext = sequenceContext;
         }
         private SequenceContext sequenceContext;
-        public Task CreateSequence(string key, SequenceInfo sequenceInfo)
-        {
-           
-            throw new NotImplementedException();
-        }
 
-        public Task<bool> ExistsAsync(string key)
+        public Task<long> GetValueAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task<long> GetValueAsync(string key)
+        public Task CreateSequence(string name, SequenceInfo sequenceInfo)
         {
             throw new NotImplementedException();
         }
 
-        public Task<long> GetValueOrCreateAsync(string key, SequenceInfo sequenceInfo)
+        public Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveAsync(string key)
+        public Task ResetAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public Task ResetAsync(string key)
+        public Task<bool> RemoveAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistsAsync(string name)
         {
             throw new NotImplementedException();
         }

@@ -13,5 +13,11 @@ namespace YS.Sequence.Impl.EFCore
 
         }
         public virtual DbSet<SequenceInfo> Sequences { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<SequenceInfo>().HasIndex(p => p.Name).IsUnique(true);
+        }
     }
 }
