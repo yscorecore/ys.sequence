@@ -18,6 +18,7 @@ namespace YS.Sequence.Impl.EFCore
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SequenceInfo>().HasIndex(p => p.Name).IsUnique(true);
+            modelBuilder.Entity<SequenceInfo>().Property(p => p.Name).IsUnicode(false);
         }
     }
 }

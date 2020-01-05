@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredProcedures {
+namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105132243_AddProc {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredPro
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredProcedures.Pro" +
-                            "cs", typeof(Procs).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105132243_AddProc.Procs", typeof(Procs).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -58,55 +57,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredPro
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 create procedure CreateSequence 
-        ///(
-        /// @seqenceName varchar(128),
-        /// @startValue bigint=1 ,
-        /// @step int=1,
-        /// @EndValue bigint =NULL
-        ///)
-        ///AS
-        ///begin
-        ///IF @seqenceName IS NULL BEGIN
-        ///    RAISERROR(&apos;The @seqenceName should not be null.&apos;,11,1)
-        ///    RETURN 0
-        ///   END 
-        ///   IF @startValue IS NULL BEGIN
-        ///    RAISERROR(&apos;The @startValue should not be null.&apos;,11,1)
-        ///    RETURN 0
-        ///   END
-        ///   IF @step IS NULL BEGIN 
-        ///    RAISERROR(&apos;The @step should not be null.&apos;,11,1)
-        ///    RETURN 0
-        ///   END 
-        ///   IF dbo.ExistsSequence(@seqenceName)=1 BEGIN
-        ///    RAISE [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        /// </summary>
-        internal static string CreateSequence {
-            get {
-                return ResourceManager.GetString("CreateSequence", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 CREATE procedure DeleteSequence
-        ///(
-        /// @seqenceName varchar(128)
-        ///)
-        ///as
-        ///begin
-        /// delete Sequences  where [Name]=@seqenceName
-        /// return @@rowcount
-        ///end
-        ///go 的本地化字符串。
-        /// </summary>
-        internal static string DeleteSequence {
-            get {
-                return ResourceManager.GetString("DeleteSequence", resourceCulture);
             }
         }
         
@@ -140,24 +90,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredPro
         }
         
         /// <summary>
-        ///   查找类似 create procedure GetSequenceInfo 
-        ///(
-        /// @seqenceName varchar(128) 
-        ///)
-        ///AS
-        ///BEGIN
-        /// SELECT * FROM Sequences WHERE [Name]=@seqenceName
-        /// RETURN @@ROWCOUNT
-        ///END
-        ///go 的本地化字符串。
-        /// </summary>
-        internal static string GetSequenceInfo {
-            get {
-                return ResourceManager.GetString("GetSequenceInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 create procedure GetSequenceValue 
         ///(
         /// @seqenceName varchar(128),
@@ -182,26 +114,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations._20200105122945.StoredPro
         internal static string GetSequenceValue {
             get {
                 return ResourceManager.GetString("GetSequenceValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 create procedure ResetSequence 
-        ///(
-        /// @seqenceName varchar(128)
-        ///)
-        ///AS
-        ///BEGIN
-        /// UPDATE Sequences
-        /// SET CurrentValue = NULL 
-        /// WHERE [Name]=@seqenceName
-        /// RETURN @@ROWCOUNT
-        ///END
-        ///go 的本地化字符串。
-        /// </summary>
-        internal static string ResetSequence {
-            get {
-                return ResourceManager.GetString("ResetSequence", resourceCulture);
             }
         }
     }

@@ -19,12 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Migrations\_20200105122945\Functions\Funcs.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Funcs.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Migrations\_20200105122945\StoredProcedures\Procs.Designer.cs">
+    <Compile Update="Migrations\_20200105132243_AddProc\Procs.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Procs.resx</DependentUpon>
@@ -32,11 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Migrations\_20200105122945\Functions\Funcs.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Funcs.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Migrations\_20200105122945\StoredProcedures\Procs.resx">
+    <EmbeddedResource Update="Migrations\_20200105132243_AddProc\Procs.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Procs.Designer.cs</LastGenOutput>
     </EmbeddedResource>

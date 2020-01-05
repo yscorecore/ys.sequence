@@ -10,8 +10,8 @@ using YS.Sequence.Impl.EFCore.SqlServer;
 namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerSequenceContext))]
-    [Migration("20200105094428_InitTables")]
-    partial class InitTables
+    [Migration("20200105132243_AddProc")]
+    partial class AddProc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,17 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<long?>("CurrentValue")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("EndValue")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(128)")
+                        .HasMaxLength(128)
+                        .IsUnicode(false);
 
                     b.Property<long>("StartValue")
                         .HasColumnType("bigint");
@@ -37,6 +46,9 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Sequences");
                 });

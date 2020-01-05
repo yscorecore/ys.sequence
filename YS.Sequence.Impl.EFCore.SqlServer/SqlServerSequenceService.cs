@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using YS.Sequence.Impl.EFCore;
+using System.Linq;
 
 namespace YS.Sequence.Impl.SqlServer
 {
@@ -16,14 +17,22 @@ namespace YS.Sequence.Impl.SqlServer
         }
         private SequenceContext sequenceContext;
 
+       
+        public async Task CreateSequence(string name, SequenceInfo sequenceInfo)
+        {
+            sequenceContext.Sequences.Add(new EFCore.SequenceInfo
+            {
+                Id = Guid.NewGuid(),
+                StartValue = sequenceInfo.StartValue,
+                Step = sequenceInfo.Step,
+                EndValue = sequenceInfo.EndValue,
+                Name = name
+            });
+            await sequenceContext.SaveChangesAsync();
+        }
         public Task<long> GetValueAsync(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task CreateSequence(string name, SequenceInfo sequenceInfo)
-        {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
@@ -31,19 +40,34 @@ namespace YS.Sequence.Impl.SqlServer
             throw new NotImplementedException();
         }
 
-        public Task ResetAsync(string name)
+        public async Task ResetAsync(string name)
         {
-            throw new NotImplementedException();
+            var entity = await sequenceContext.Sequences.FirstAsync(p => p.Name == name);
+            if (entity != null)
+            {
+                entity.CurrentValue = null;
+                await sequenceContext.SaveChangesAsync();
+            }
         }
 
-        public Task<bool> RemoveAsync(string name)
+        public async Task<bool> RemoveAsync(string name)
         {
-            throw new NotImplementedException();
+            var entity = await sequenceContext.Sequences.FirstAsync(p => p.Name == name);
+            if (entity != null)
+            {
+                sequenceContext.Sequences.Remove(entity);
+                return await sequenceContext.SaveChangesAsync().ContinueWith(Convert.ToBoolean);
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public Task<bool> ExistsAsync(string name)
+        public async Task<bool> ExistsAsync(string name)
         {
-            throw new NotImplementedException();
+            var totalCount = await this.sequenceContext.Sequences.CountAsync(p => p.Name == name);
+            return totalCount > 0;
         }
     }
 }

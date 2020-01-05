@@ -25,7 +25,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("CurrentValue")
+                    b.Property<long?>("CurrentValue")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("EndValue")
@@ -33,8 +33,9 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("varchar(128)")
+                        .HasMaxLength(128)
+                        .IsUnicode(false);
 
                     b.Property<long>("StartValue")
                         .HasColumnType("bigint");
