@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>YS.Sequence.Impl.EFCore.SqlServer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0-preview-20200102-01" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.0-beta2" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.0-beta2" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="YS.Docker.Impl.Dotnet" Version="1.0.0" />
+    <PackageReference Include="YS.Knife.Hosting.MSTest" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj" />
+    <ProjectReference Include="..\YS.Sequence.Impl.EFCore.SqlServer\YS.Sequence.Impl.EFCore.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>

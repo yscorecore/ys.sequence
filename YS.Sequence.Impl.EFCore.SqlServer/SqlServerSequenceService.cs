@@ -22,15 +22,18 @@ namespace YS.Sequence.Impl.SqlServer
 
         public async Task CreateSequence(string name, SequenceInfo sequenceInfo)
         {
-            sequenceContext.Sequences.Add(new EFCore.SequenceInfo
+            var row = new EFCore.SequenceInfo
             {
                 Id = Guid.NewGuid(),
-                StartValue = sequenceInfo.StartValue,
-                Step = sequenceInfo.Step,
-                EndValue = sequenceInfo.EndValue,
+                StartValue = sequenceInfo == null ? 1 : sequenceInfo.StartValue,
+                Step = sequenceInfo == null ? 1 : sequenceInfo.Step,
+                EndValue = sequenceInfo?.EndValue,
                 Name = name
-            });
+            };
+            sequenceContext.Sequences.Add(row);
             await sequenceContext.SaveChangesAsync();
+            
+            sequenceContext.Entry(row).DetectChanges();
         }
         public async Task<long> GetValueAsync(string name)
         {
@@ -76,21 +79,23 @@ namespace YS.Sequence.Impl.SqlServer
 
         public async Task ResetAsync(string name)
         {
-            var entity = await sequenceContext.Sequences.FirstAsync(p => p.Name == name);
+            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
             {
                 entity.CurrentValue = null;
+                this.sequenceContext.Entry(entity).Property(p => p.CurrentValue).IsModified = true;
                 await sequenceContext.SaveChangesAsync();
             }
         }
 
         public async Task<bool> RemoveAsync(string name)
         {
-            var entity = await sequenceContext.Sequences.FirstAsync(p => p.Name == name);
+            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
             {
                 sequenceContext.Sequences.Remove(entity);
-                return await sequenceContext.SaveChangesAsync().ContinueWith(Convert.ToBoolean);
+                var changeRows = await sequenceContext.SaveChangesAsync();
+                return Convert.ToBoolean(changeRows);
             }
             else
             {
