@@ -19,7 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{19927E13-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer.UnitTest", "YS.Sequence.Impl.EFCore.SqlServer.UnitTest\YS.Sequence.Impl.EFCore.SqlServer.UnitTest.csproj", "{DB4ED648-7FEB-4C7E-B17B-8C30F6D68512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.Sequence.Core.UnitTest", "YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj", "{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Core.UnitTest", "YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj", "{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Client", "YS.Sequence.Client\YS.Sequence.Client.csproj", "{F3EB907D-7A4C-4D97-810E-6181F6FA25DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Client.UnitTest", "YS.Sequence.Client.UnitTest\YS.Sequence.Client.UnitTest.csproj", "{9FBD4004-833E-4BF4-B855-2B88EBEE309A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 		{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EB907D-7A4C-4D97-810E-6181F6FA25DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EB907D-7A4C-4D97-810E-6181F6FA25DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EB907D-7A4C-4D97-810E-6181F6FA25DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EB907D-7A4C-4D97-810E-6181F6FA25DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBD4004-833E-4BF4-B855-2B88EBEE309A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBD4004-833E-4BF4-B855-2B88EBEE309A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBD4004-833E-4BF4-B855-2B88EBEE309A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBD4004-833E-4BF4-B855-2B88EBEE309A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +78,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DB4ED648-7FEB-4C7E-B17B-8C30F6D68512} = {19927E13-A294-4524-94A2-2F79C18A8736}
 		{1297EB8E-BA05-476F-A6E6-0CC02E348D3A} = {19927E13-A294-4524-94A2-2F79C18A8736}
+		{9FBD4004-833E-4BF4-B855-2B88EBEE309A} = {19927E13-A294-4524-94A2-2F79C18A8736}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB11BB21-3F5D-42D6-8737-F19C0666F1F8}

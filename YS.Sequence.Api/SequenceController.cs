@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Knife.Api;
 using Microsoft.AspNetCore.Mvc;
-
 namespace YS.Sequence.Api
 {
+    
     public class SequenceController : ApiBase<ISequenceService>, ISequenceService
     {
         [Route("{key}")]

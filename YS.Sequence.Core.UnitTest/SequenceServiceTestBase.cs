@@ -1,8 +1,6 @@
 ﻿using Knife.Hosting.MSTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace YS.Sequence.Core.UnitTest
