@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\20200105132243_GetOrCreateSequenceValue.sql" />
+    <None Remove="Migrations\20200105132243_GetSequenceValue.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\20200105132243_GetOrCreateSequenceValue.sql" />
+    <EmbeddedResource Include="Migrations\20200105132243_GetSequenceValue.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,21 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\YS.Sequence.Core\YS.Sequence.Core.csproj" />
     <ProjectReference Include="..\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Migrations\_20200105132243_AddProc\Procs.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Procs.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Migrations\_20200105132243_AddProc\Procs.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Procs.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

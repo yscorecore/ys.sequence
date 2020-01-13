@@ -19,7 +19,7 @@ BEGIN
       ELSE @tmp END
  WHERE [Name]=@seqenceName 
  
- IF @flag IS NULL--说明没有找到记录
+ IF @flag IS NULL--no record
  BEGIN
    INSERT INTO Sequences([Id],[Name],StartValue,EndValue,Step) VALUES(newid(), @seqenceName,@startValue,@endValue,@step) --插入序列
    UPDATE Sequences
