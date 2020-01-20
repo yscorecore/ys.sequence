@@ -8,8 +8,8 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
     {
         static IDictionary<string, string> Procs = new Dictionary<string, string>
         {
-            ["GetOrCreateSequenceValue"] = "20200105132243_GetOrCreateSequenceValue.sql",
-            ["GetSequenceValue"]= "20200105132243_GetSequenceValue.sql"
+            ["GetOrCreateSequenceValue"] = "GetOrCreateSequenceValue.sql",
+            ["GetSequenceValue"]= "GetSequenceValue.sql"
 
         };
         protected override void Up(MigrationBuilder migrationBuilder)

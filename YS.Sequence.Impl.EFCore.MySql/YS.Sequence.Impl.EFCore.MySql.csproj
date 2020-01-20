@@ -1,7 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Migrations\GetOrCreateSequenceValue.sql" />
+    <None Remove="Migrations\GetSequenceValue.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\GetOrCreateSequenceValue.sql" />
+    <EmbeddedResource Include="Migrations\GetSequenceValue.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YS.EntityFrameworkCore.MySql" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YS.Sequence.Core\YS.Sequence.Core.csproj" />
+    <ProjectReference Include="..\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj" />
+  </ItemGroup>
 
 </Project>

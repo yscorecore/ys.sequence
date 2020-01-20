@@ -10,32 +10,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace YS.Sequence.Impl.SqlServer
 {
-    [ServiceClass(Lifetime = ServiceLifetime.Scoped)]
-    public class SqlServerSequenceService : ISequenceService
+    [ServiceClass()]
+    public class SqlServerSequenceService : BaseSequenceService
     {
-        public SqlServerSequenceService(SequenceContext sequenceContext)
+        public SqlServerSequenceService(SequenceContext sequenceContext):base(sequenceContext)
         {
-            this.sequenceContext = sequenceContext;
         }
-        private SequenceContext sequenceContext;
 
-
-        public async Task CreateSequence(string name, SequenceInfo sequenceInfo)
-        {
-            var row = new EFCore.SequenceInfo
-            {
-                Id = Guid.NewGuid(),
-                StartValue = sequenceInfo == null ? 1 : sequenceInfo.StartValue,
-                Step = sequenceInfo == null ? 1 : sequenceInfo.Step,
-                EndValue = sequenceInfo?.EndValue,
-                Name = name
-            };
-            sequenceContext.Sequences.Add(row);
-            await sequenceContext.SaveChangesAsync();
-            
-            sequenceContext.Entry(row).DetectChanges();
-        }
-        public async Task<long> GetValueAsync(string name)
+        public override async Task<long> GetValueAsync(string name)
         {
             var nameParam = new SqlParameter("@seqenceName", name);
             var valueParam = new SqlParameter("@currentValue", System.Data.SqlDbType.BigInt)
@@ -51,7 +33,7 @@ namespace YS.Sequence.Impl.SqlServer
             return Convert.ToInt64(valueParam.Value);
         }
 
-        public async Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
+        public override async Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
         {
             var nameParam = new SqlParameter("@seqenceName", name);
             var startParam = new SqlParameter("@startValue", sequenceInfo.StartValue);
@@ -75,38 +57,6 @@ namespace YS.Sequence.Impl.SqlServer
             }
 
             return Convert.ToInt64(valueParam.Value);
-        }
-
-        public async Task ResetAsync(string name)
-        {
-            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
-            if (entity != null)
-            {
-                entity.CurrentValue = null;
-                this.sequenceContext.Entry(entity).Property(p => p.CurrentValue).IsModified = true;
-                await sequenceContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task<bool> RemoveAsync(string name)
-        {
-            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
-            if (entity != null)
-            {
-                sequenceContext.Sequences.Remove(entity);
-                var changeRows = await sequenceContext.SaveChangesAsync();
-                return Convert.ToBoolean(changeRows);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public async Task<bool> ExistsAsync(string name)
-        {
-            var totalCount = await this.sequenceContext.Sequences.CountAsync(p => p.Name == name);
-            return totalCount > 0;
         }
     }
 }

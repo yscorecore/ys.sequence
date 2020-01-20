@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Migrations\20200105132243_GetOrCreateSequenceValue.sql" />
-    <None Remove="Migrations\20200105132243_GetSequenceValue.sql" />
+    <None Remove="Migrations\GetOrCreateSequenceValue.sql" />
+    <None Remove="Migrations\GetSequenceValue.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\20200105132243_GetOrCreateSequenceValue.sql" />
-    <EmbeddedResource Include="Migrations\20200105132243_GetSequenceValue.sql" />
+    <EmbeddedResource Include="Migrations\GetOrCreateSequenceValue.sql" />
+    <EmbeddedResource Include="Migrations\GetSequenceValue.sql" />
   </ItemGroup>
 
   <ItemGroup>
