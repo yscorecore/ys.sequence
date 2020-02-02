@@ -7,50 +7,281 @@ namespace YS.Sequence.Core.UnitTest
 {
     public abstract class SequenceServiceTestBase : TestBase<ISequenceService>
     {
+        #region Create
+        [TestCategory("Create")]
         [TestMethod]
-        public async Task CreateSequenceSuccess()
+        public async Task ShouldCreateSequenceWhenCreateSequenceAndGivenValidArguments()
         {
-            var id = RandomUtility.RandomCode(10);
-            Assert.IsFalse(await this.TestObject.ExistsAsync(id));
-            await this.TestObject.CreateSequence(id, new SequenceInfo
-            {
-                StartValue = 1,
-                EndValue = 1000,
-                Step = 1
-            });
-            Assert.IsTrue(await this.TestObject.ExistsAsync(id));
+            var name = RandomUtility.RandomCode(10);
+            Assert.IsFalse(await this.TestObject.ExistsAsync(name));
+            await this.TestObject.CreateSequence(name, SequenceInfo.Default);
+            Assert.IsTrue(await this.TestObject.ExistsAsync(name));
         }
+        //[TestCategory("Create")]
+        //[TestMethod]
+        //public async Task ShouldThrowExceptionWhenCreateSequenceAndNameHasExists()
+        //{
+        //    var name = RandomUtility.RandomCode(10);
+        //    await this.TestObject.CreateSequence(name, SequenceInfo.Default);
+        //    var ex = await Assert.ThrowsExceptionAsync<Exception>(() => this.TestObject.CreateSequence(name, SequenceInfo.Default));
+        //}
+        [TestCategory("Create")]
+        [TestMethod]
+        public async Task ShouldThrowArgumentNullArgumentExceptionWhenCreateSequenceAndGivenSequenceInfoIsNull()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => this.TestObject.CreateSequence(name, null));
+        }
+        [TestCategory("Create")]
+        [TestMethod]
+        public async Task ShouldThrowArgumentNullArgumentExceptionWhenCreateSequenceAndGivenNameIsNull()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => this.TestObject.CreateSequence(null, new SequenceInfo()));
+        }
+        #endregion
 
+        #region Remove
+
+        [TestCategory("Remove")]
         [TestMethod]
-        public async Task RemoveExistsSequenceShouldReturnTrue()
+        public async Task ShouldReturnTrueWhenRemoveExistsSequence()
         {
-            var id = RandomUtility.RandomCode(10);
-            await this.TestObject.CreateSequence(id, new SequenceInfo());
-            var removeResult = await this.TestObject.RemoveAsync(id);
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, SequenceInfo.Default);
+            var removeResult = await this.TestObject.RemoveAsync(name);
             Assert.IsTrue(removeResult);
+            Assert.IsFalse(await this.TestObject.ExistsAsync(name));
         }
+        [TestCategory("Remove")]
         [TestMethod]
-        public async Task RemoveNoExistsSequenceShouldReturnFalse()
+        public async Task ShouldReturnFalseeWhenRemoveNoExistsSequence()
         {
-            var id = RandomUtility.RandomCode(10);
-            var removeResult = await this.TestObject.RemoveAsync(id);
+            var name = RandomUtility.RandomCode(10);
+            var removeResult = await this.TestObject.RemoveAsync(name);
             Assert.IsFalse(removeResult);
         }
+        #endregion
+
+        #region GetSequence
+
+        [TestCategory("GetSequence")]
         [TestMethod]
-        public async Task ResetExistsSequenceAndRegetValueShouldReturnDefaultValue()
+        public async Task ShouldReturnNullWhenGetNoExistsSequence()
         {
-            var id = RandomUtility.RandomCode(10);
-            await this.TestObject.CreateSequence(id, null);
-            await this.TestObject.GetValueAsync(id); //return 1
-            await this.TestObject.GetValueAsync(id); //return 2
-            await this.TestObject.GetValueAsync(id); //return 3;
-            await this.TestObject.ResetAsync(id);
+            var name = RandomUtility.RandomCode(10);
+            var sequenceInfo = await this.TestObject.GetSequence(name);
+            Assert.IsNull(sequenceInfo);
+        }
+        [TestCategory("GetSequence")]
+        [TestMethod]
+        public async Task ShouldReturnSequenceInfoWhenGetExistsSequence()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5, EndValue = 200 });
+            var sequenceInfo = await this.TestObject.GetSequence(name);
+            Assert.IsNotNull(sequenceInfo);
+            Assert.AreEqual(100, sequenceInfo.StartValue);
+            Assert.AreEqual(5, sequenceInfo.Step);
+            Assert.AreEqual(200, sequenceInfo.EndValue);
+
+        }
+        #endregion
+
+        #region Reset
+        [TestCategory("Reset")]
+        [TestMethod]
+
+        public async Task ShouldReturnStartValueWhenResetExistsSequenceAndGetValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, SequenceInfo.Default);
+            await this.TestObject.GetValueAsync(name); //return 1
+            await this.TestObject.GetValueAsync(name); //return 2
+            var res = await this.TestObject.ResetAsync(name);
+            Assert.IsTrue(res);
             // after reset and get value, it should be the default value
-            var value = await this.TestObject.GetValueAsync(id);
-            Assert.AreEqual(1L, value);
+            var value = await this.TestObject.GetValueAsync(name);
+            Assert.AreEqual(SequenceInfo.Default.StartValue, value);
+        }
+
+        [TestCategory("Reset")]
+        [TestMethod]
+
+        public async Task ShouldReturnFalseWhenResetNoExistsSequence()
+        {
+            var name = RandomUtility.RandomCode(10);
+            var res = await this.TestObject.ResetAsync(name);
+            Assert.IsFalse(res);
+        }
+        #endregion
+
+        #region GetValue
+        [TestCategory("GetValue")]
+        [TestMethod]
+
+        public async Task ShouldReturnStartValueWhenGetNewSequenceValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100 });
+            var value = await this.TestObject.GetValueAsync(name);
+            Assert.AreEqual(100, value);
+        }
+        [TestCategory("GetValue")]
+        [TestMethod]
+        public async Task ShouldAwaysReturnStartValueWhenGetSequenceValueAndStepIsZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 999, Step = 0 });
+            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
+        }
+
+        [TestCategory("GetValue")]
+        [TestMethod]
+        public async Task ShouldIncreaseValueWhenGetSequenceValueAndStepGreatThanZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5 });
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(110, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(115, await this.TestObject.GetValueAsync(name));
+        }
+
+        [TestCategory("GetValue")]
+        [TestMethod]
+        public async Task ShouldReuseStartValueWhenGetSequenceValueAndStepGreatThanZeroAndCurrentValueGreatThanEndValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5, EndValue = 110 });
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(110, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
+        }
+
+        [TestCategory("GetValue")]
+        [TestMethod]
+        public async Task ShouldDecreaseValueWhenGetSequenceValueAndStepLessThanZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5 });
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(85, await this.TestObject.GetValueAsync(name));
+        }
+
+        [TestCategory("GetValue")]
+        [TestMethod]
+        public async Task ShouldReuseStartValueWhenGetSequenceValueAndStepLessThanZeroAndCurrentValueLessThanEndValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5, EndValue = 90 });
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
+        }
+        #endregion
+
+        #region GetValueOrCreate
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldReturnStartValueWhenGetValueOrCreateNewSequence()
+        {
+            var name = RandomUtility.RandomCode(10);
+            var value = await this.TestObject.GetValueOrCreateAsync(name, new SequenceInfo() { StartValue = 100,Step=2, EndValue=200 });
+            Assert.AreEqual(100, value);
+            var sequenceInfo = await this.TestObject.GetSequence(name);
+            Assert.AreEqual(100, sequenceInfo.StartValue);
+            Assert.AreEqual(2, sequenceInfo.Step);
+            Assert.AreEqual(200,sequenceInfo.EndValue);
+        }
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldReturnNextValueWhenGetValueOrCreateExistsSequence()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, SequenceInfo.Default);
+            var value = await this.TestObject.GetValueOrCreateAsync(name, new SequenceInfo() { StartValue = 100, Step = 2, EndValue = 200 });
+            Assert.AreEqual(1, value);
+            var sequenceInfo = await this.TestObject.GetSequence(name);
+            Assert.AreEqual(1, sequenceInfo.StartValue);
+            Assert.AreEqual(1, sequenceInfo.Step);
+            Assert.AreEqual(null, sequenceInfo.EndValue);
         }
 
 
+
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldAwaysReturnStartValueWhenGetOrCreateSequenceValueAndStepIsZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 999, Step = 0 });
+            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name,SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+        }
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldIncreaseValueWhenGetOrCreateSequenceValueAndStepGreatThanZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5 });
+            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(110, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(115, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+        }
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldReuseStartValueWhenGetOrCreateSequenceValueAndStepGreatThanZeroAndCurrentValueGreatThanEndValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5, EndValue = 110 });
+            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(110, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+        }
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldDecreaseValueWhenGetOrCreateSequenceValueAndStepLessThanZero()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5 });
+            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(85, await this.TestObject.GetValueAsync(name));
+        }
+
+        [TestCategory("GetValueOrCreate")]
+        [TestMethod]
+        public async Task ShouldReuseStartValueWhenGetOrCreateSequenceValueAndStepLessThanZeroAndCurrentValueLessThanEndValue()
+        {
+            var name = RandomUtility.RandomCode(10);
+            await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5, EndValue = 90 });
+            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(95, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(90, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(95, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+        }
+        #endregion
 
     }
 }

@@ -20,6 +20,11 @@ namespace YS.Sequence.Api
             return this.Delegater.ExistsAsync(key);
         }
 
+        public Task<SequenceInfo> GetSequence(string name)
+        {
+            throw new System.NotImplementedException();
+        }
+
         [Route("{key}")]
         [HttpGet]
         public Task<long> GetValueAsync([FromRoute]string key)
@@ -42,7 +47,7 @@ namespace YS.Sequence.Api
 
         [Route("{key}/reset")]
         [HttpPut]
-        public Task ResetAsync([FromRoute]string key)
+        public Task<bool> ResetAsync([FromRoute]string key)
         {
             return this.Delegater.ResetAsync(key);
         }

@@ -13,5 +13,11 @@ namespace YS.Sequence
                 EndValue = endValue
             });
         }
+
+        public static async Task<bool> ExistsAsync(this ISequenceService sequenceService, string name)
+        {
+            var sequence = await sequenceService.GetSequence(name);
+            return sequence != null;
+        }
     }
 }

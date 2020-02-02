@@ -12,7 +12,7 @@ namespace YS.Sequence.Client
             throw new NotImplementedException();
         }
 
-        public Task<bool> ExistsAsync(string name)
+        public Task<SequenceInfo> GetSequence(string name)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +32,7 @@ namespace YS.Sequence.Client
             throw new NotImplementedException();
         }
 
-        public Task ResetAsync(string name)
+        public Task<bool> ResetAsync(string name)
         {
             throw new NotImplementedException();
         }

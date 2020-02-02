@@ -8,30 +8,24 @@ CREATE procedure GetOrCreateSequenceValue
 )
 AS
 BEGIN
- DECLARE @tmp bigint,@flag int 
+ DECLARE @flag int 
  UPDATE Sequences
  SET
   @flag=1,
-  @currentValue= ISNULL (CurrentValue,StartValue),
-  @tmp=@currentValue+STEP,
-  CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
-      WHEN  @tmp>EndValue THEN @tmp%EndValue+StartValue-1 
-      ELSE @tmp END
+  @currentValue= case when CurrentValue is null then StartValue
+   			   when EndValue is null then CurrentValue + Step
+   			   when Step > 0 AND currentValue + Step > EndValue then StartValue
+   			   when Step < 0 AND currentValue + Step < EndValue then StartValue
+   			   ELSE CurrentValue + Step
+			   End,
+  CurrentValue=@currentValue
  WHERE [Name]=@seqenceName 
  
  IF @flag IS NULL--no record
  BEGIN
-   INSERT INTO Sequences([Id],[Name],StartValue,EndValue,Step) VALUES(newid(), @seqenceName,@startValue,@endValue,@step) --插入序列
-   UPDATE Sequences
-   SET
-    @flag=1,
-    @currentValue= ISNULL (CurrentValue,StartValue),
-    @tmp=@currentValue+STEP,
-    CurrentValue=CASE WHEN EndValue IS NULL THEN @tmp  
-        WHEN  @tmp>EndValue THEN @tmp%EndValue+StartValue-1 
-        ELSE @tmp END
-   WHERE [Name]=@seqenceName    
-   
+   Set @currentValue = @startValue
+   INSERT INTO Sequences([Id],[Name],StartValue,EndValue,Step,CurrentValue) 
+   VALUES(newid(), @seqenceName,@startValue,@endValue,@step,@currentValue) --插入序列
  END
 
  RETURN @flag 

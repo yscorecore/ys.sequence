@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YS.Sequence.Impl.EFCore
 {
-   public abstract  class BaseSequenceService : ISequenceService
+    public abstract class BaseSequenceService : ISequenceService
     {
         public BaseSequenceService(SequenceContext sequenceContext)
         {
@@ -17,6 +17,14 @@ namespace YS.Sequence.Impl.EFCore
 
         public async Task CreateSequence(string name, YS.Sequence.SequenceInfo sequenceInfo)
         {
+            if (sequenceInfo == null)
+            {
+                throw new ArgumentNullException(nameof(sequenceInfo));
+            }
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
             var row = new EFCore.SequenceInfo
             {
                 Id = Guid.NewGuid(),
@@ -31,7 +39,7 @@ namespace YS.Sequence.Impl.EFCore
             sequenceContext.Entry(row).DetectChanges();
         }
 
-        public async Task ResetAsync(string name)
+        public async Task<bool> ResetAsync(string name)
         {
             var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
@@ -39,6 +47,11 @@ namespace YS.Sequence.Impl.EFCore
                 entity.CurrentValue = null;
                 this.sequenceContext.Entry(entity).Property(p => p.CurrentValue).IsModified = true;
                 await sequenceContext.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -64,5 +77,23 @@ namespace YS.Sequence.Impl.EFCore
         }
         public abstract Task<long> GetValueAsync(string name);
         public abstract Task<long> GetValueOrCreateAsync(string name, Sequence.SequenceInfo sequenceInfo);
+
+        public async Task<Sequence.SequenceInfo> GetSequence(string name)
+        {
+            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
+            if (entity != null)
+            {
+                return new Sequence.SequenceInfo()
+                {
+                    StartValue = entity.StartValue,
+                    EndValue = entity.EndValue,
+                    Step = entity.Step,
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
