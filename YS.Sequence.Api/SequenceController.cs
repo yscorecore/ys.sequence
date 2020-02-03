@@ -19,10 +19,11 @@ namespace YS.Sequence.Api
         {
             return this.Delegater.ExistsAsync(key);
         }
-
+        [Route("{key}/info")]
+        [HttpGet]
         public Task<SequenceInfo> GetSequence(string name)
         {
-            throw new System.NotImplementedException();
+            return this.Delegater.GetSequence(name);
         }
 
         [Route("{key}")]
@@ -32,8 +33,8 @@ namespace YS.Sequence.Api
             return this.Delegater.GetValueAsync(key);
         }
         [Route("{key}/assert")]
-        [HttpPost]
-        public Task<long> GetValueOrCreateAsync([FromRoute]string key, [FromBody]SequenceInfo sequenceInfo)
+        [HttpGet]
+        public Task<long> GetValueOrCreateAsync([FromRoute]string key, [FromQuery]SequenceInfo sequenceInfo)
         {
             return this.Delegater.GetValueOrCreateAsync(key, sequenceInfo);
         }

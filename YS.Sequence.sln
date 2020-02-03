@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Client", "YS.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Client.UnitTest", "YS.Sequence.Client.UnitTest\YS.Sequence.Client.UnitTest.csproj", "{9FBD4004-833E-4BF4-B855-2B88EBEE309A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.Sequence.Impl.EFCore.MySql.UnitTest", "YS.Sequence.Impl.EFCore.MySql.UnitTest\YS.Sequence.Impl.EFCore.MySql.UnitTest.csproj", "{9317F6A7-CBC7-40F1-8D44-89E96DC59175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.MySql.UnitTest", "YS.Sequence.Impl.EFCore.MySql.UnitTest\YS.Sequence.Impl.EFCore.MySql.UnitTest.csproj", "{9317F6A7-CBC7-40F1-8D44-89E96DC59175}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

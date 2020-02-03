@@ -17,19 +17,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
     {
         private static IHost host;
         private static string containerId;
-        static DockerContainerSettings SqlServerDockerSetting = new DockerContainerSettings
-        {
-            ImageName = "mcr.microsoft.com/mssql/server:2019-latest",
-            Ports = new Dictionary<int, int>
-            {
-                [1433] = 1433
-            },
-            Envs = new Dictionary<string, string>
-            {
-                ["ACCEPT_EULA"] = "Y",
-                ["SA_PASSWORD"] = "yourStrong(!)Password"
-            }
-        };
 
         [AssemblyInitialize()]
         public static void Setup(TestContext assemblyTestContext)

@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace YS.Sequence.Impl.EFCore
@@ -28,9 +26,9 @@ namespace YS.Sequence.Impl.EFCore
             var row = new EFCore.SequenceInfo
             {
                 Id = Guid.NewGuid(),
-                StartValue = sequenceInfo == null ? 1 : sequenceInfo.StartValue,
-                Step = sequenceInfo == null ? 1 : sequenceInfo.Step,
-                EndValue = sequenceInfo?.EndValue,
+                StartValue = sequenceInfo.StartValue,
+                Step = sequenceInfo.Step,
+                EndValue = sequenceInfo.EndValue,
                 Name = name
             };
             sequenceContext.Sequences.Add(row);

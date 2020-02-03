@@ -38,7 +38,7 @@ namespace YS.Sequence.Impl.SqlServer
             var nameParam = new SqlParameter("@seqenceName", name);
             var startParam = new SqlParameter("@startValue", sequenceInfo.StartValue);
             var endParam = new SqlParameter("@endValue", sequenceInfo.EndValue);
-            var stepParam = new SqlParameter("@step", sequenceInfo.Step == 0 ? 1 : sequenceInfo.Step);
+            var stepParam = new SqlParameter("@step", sequenceInfo.Step);
             var valueParam = new SqlParameter("@currentValue", System.Data.SqlDbType.BigInt)
             {
                 Direction = System.Data.ParameterDirection.Output
