@@ -13,7 +13,7 @@ namespace YS.Sequence.Api
            return this.Delegater.CreateSequence(key, sequenceInfo);
         }
 
-        [Route("{key}/assert")]
+        [Route("{key}/check")]
         [HttpGet]
         public Task<bool> ExistsAsync([FromRoute]string key)
         {

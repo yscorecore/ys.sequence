@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace YS.Sequence.Impl.EFCore.MySql
 {
-    [ServiceClass()]
+    [ServiceClass(Lifetime = Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped)]
     public class MySqlSequenceService : BaseSequenceService
     {
         public MySqlSequenceService(SequenceContext sequenceContext) : base(sequenceContext)
