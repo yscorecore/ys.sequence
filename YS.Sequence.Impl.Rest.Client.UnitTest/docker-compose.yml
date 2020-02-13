@@ -14,9 +14,9 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
-    entrypoint: /scripts/wait-for-it.sh db:3306 -s -t 0 -- dotnet YS.Sequence.App.dll install
+    entrypoint: sh -c "/bin/wait-for-it.sh db:3306 -s -t 0 -- dotnet YS.Sequence.App.dll install"
     volumes:
-      - ../scripts/:/scripts/
+      - ../scripts/wait-for-it.sh:/bin/wait-for-it.sh
   api:
     depends_on: 
       - db

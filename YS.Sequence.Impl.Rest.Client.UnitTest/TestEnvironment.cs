@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using YS.Docker;
 using YS.Knife.Test;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer

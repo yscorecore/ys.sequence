@@ -19,7 +19,6 @@
     },
     "YS.Sequence.MicroService": {
       "commandName": "Project",
-      "commandLineArgs": "install",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
