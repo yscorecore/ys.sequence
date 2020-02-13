@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "YS.Sequence.Impl.Rest.Client.UnitTest": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

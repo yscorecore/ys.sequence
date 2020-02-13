@@ -1,5 +1,6 @@
 
 using Knife.WebHosting;
+
 namespace YS.Sequence.MicroService
 {
     public class Program

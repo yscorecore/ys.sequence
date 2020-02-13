@@ -15,10 +15,7 @@ namespace YS.Sequence.Impl.EFCore
 
         public async Task CreateSequence(string name, YS.Sequence.SequenceInfo sequenceInfo)
         {
-            if (sequenceInfo == null)
-            {
-                throw new ArgumentNullException(nameof(sequenceInfo));
-            }
+            sequenceInfo = sequenceInfo ?? YS.Sequence.SequenceInfo.Default;
             if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));

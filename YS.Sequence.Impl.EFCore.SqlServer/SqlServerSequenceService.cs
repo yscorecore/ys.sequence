@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using YS.Sequence.Impl.EFCore;
-using System.Linq;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace YS.Sequence.Impl.SqlServer
 {
@@ -35,6 +31,7 @@ namespace YS.Sequence.Impl.SqlServer
 
         public override async Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
         {
+            sequenceInfo = sequenceInfo ?? YS.Sequence.SequenceInfo.Default;
             var nameParam = new SqlParameter("@seqenceName", name);
             var startParam = new SqlParameter("@startValue", sequenceInfo.StartValue);
             var endParam = new SqlParameter("@endValue", sequenceInfo.EndValue);

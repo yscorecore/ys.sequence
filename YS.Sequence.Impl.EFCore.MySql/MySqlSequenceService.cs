@@ -10,7 +10,6 @@ namespace YS.Sequence.Impl.EFCore.MySql
     {
         public MySqlSequenceService(SequenceContext sequenceContext) : base(sequenceContext)
         {
-
         }
         public override Task<long> GetValueAsync(string name)
         {
@@ -25,6 +24,7 @@ namespace YS.Sequence.Impl.EFCore.MySql
 
         public override Task<long> GetValueOrCreateAsync(string name, Sequence.SequenceInfo sequenceInfo)
         {
+            sequenceInfo = sequenceInfo ?? YS.Sequence.SequenceInfo.Default;
             var nameParam = new MySqlParameter("seqence_name", name);
             var valueParam = new MySqlParameter("current_value", System.Data.SqlDbType.BigInt)
             {

@@ -4,36 +4,33 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="docker-compose.yml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="docker-compose.yml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ductus.FluentDocker" Version="2.7.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
-    <PackageReference Include="YS.EntityframeworkCore.MSTest" Version="1.0.9" />
+    <PackageReference Include="YS.Docker.Impl.Dotnet" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj" />
-    <ProjectReference Include="..\YS.Sequence.Impl.EFCore.MySql\YS.Sequence.Impl.EFCore.MySql.csproj" />
-    <ProjectReference Include="..\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj" />
+    <ProjectReference Include="..\YS.Sequence.Impl.Rest.Client\YS.Sequence.Impl.Rest.Client.csproj" />
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

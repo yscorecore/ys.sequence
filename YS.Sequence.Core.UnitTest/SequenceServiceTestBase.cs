@@ -27,18 +27,22 @@ namespace YS.Sequence.Core.UnitTest
         //}
         [TestCategory("Create")]
         [TestMethod]
-        public async Task ShouldThrowArgumentNullArgumentExceptionWhenCreateSequenceAndGivenSequenceInfoIsNull()
+        public async Task ShouldUseDefaultSequenceWhenCreateSequenceAndGivenSequenceInfoIsNull()
         {
             var name = RandomUtility.RandomCode(10);
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => this.TestObject.CreateSequence(name, null));
+            await this.TestObject.CreateSequence(name, null);
+            var sequence = await this.TestObject.GetSequence(name);
+            Assert.AreEqual(SequenceInfo.Default.StartValue, sequence.StartValue);
+            Assert.AreEqual(SequenceInfo.Default.Step, sequence.Step);
+            Assert.AreEqual(SequenceInfo.Default.EndValue, sequence.EndValue);
         }
-        [TestCategory("Create")]
-        [TestMethod]
-        public async Task ShouldThrowArgumentNullArgumentExceptionWhenCreateSequenceAndGivenNameIsNull()
-        {
-            var name = RandomUtility.RandomCode(10);
-            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => this.TestObject.CreateSequence(null, new SequenceInfo()));
-        }
+        //[TestCategory("Create")]
+        //[TestMethod]
+        //public async Task ShouldThrowArgumentNullArgumentExceptionWhenCreateSequenceAndGivenNameIsNull()
+        //{
+        //    var name = RandomUtility.RandomCode(10);
+        //    await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => this.TestObject.CreateSequence(null, new SequenceInfo()));
+        //}
         #endregion
 
         #region Remove
@@ -55,7 +59,7 @@ namespace YS.Sequence.Core.UnitTest
         }
         [TestCategory("Remove")]
         [TestMethod]
-        public async Task ShouldReturnFalseeWhenRemoveNoExistsSequence()
+        public async Task ShouldReturnFalseWhenRemoveNoExistsSequence()
         {
             var name = RandomUtility.RandomCode(10);
             var removeResult = await this.TestObject.RemoveAsync(name);

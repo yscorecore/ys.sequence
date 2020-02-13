@@ -1,26 +1,24 @@
-﻿using System.Threading.Tasks;
-using Knife.Api;
-using Microsoft.AspNetCore.Http;
+﻿using Knife.Api;
 using Microsoft.AspNetCore.Mvc;
-namespace YS.Sequence.Api
+using System.Threading.Tasks;
+
+namespace YS.Sequence.Rest.Api
 {
-    
     public class SequenceController : ApiBase<ISequenceService>, ISequenceService
     {
         [Route("{key}")]
         [HttpPost]
         public Task CreateSequence([FromRoute] string key, [FromBody]SequenceInfo sequenceInfo)
         {
-           return this.Delegater.CreateSequence(key, sequenceInfo);
+            return this.Delegater.CreateSequence(key, sequenceInfo);
         }
 
         [Route("{key}/info")]
         [HttpGet]
-        public Task<SequenceInfo> GetSequence([FromRoute(Name ="key")] string name)
+        public Task<SequenceInfo> GetSequence([FromRoute(Name = "key")] string name)
         {
             return this.Delegater.GetSequence(name);
         }
-        [ProducesResponseType(StatusCodes.Status201Created)]
         [Route("{key}")]
         [HttpGet]
         public Task<long> GetValueAsync([FromRoute]string key)

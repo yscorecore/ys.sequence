@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "YS.Sequence.Impl.EFCore.MySql.UnitTest": {
+      "commandName": "Project"
+    }
+  }
+}
