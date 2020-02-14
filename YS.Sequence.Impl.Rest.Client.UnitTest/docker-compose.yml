@@ -2,7 +2,7 @@
 
 services:
   db:
-    image: mysql:latest
+    image: mysql:5.5
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
   init_context:
@@ -14,9 +14,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
-    entrypoint: sh -c "/bin/wait-for-it.sh db:3306 -s -t 0 -- dotnet YS.Sequence.App.dll install"
-    volumes:
-      - ../scripts/wait-for-it.sh:/bin/wait-for-it.sh
+    entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll install"
   api:
     depends_on: 
       - db
