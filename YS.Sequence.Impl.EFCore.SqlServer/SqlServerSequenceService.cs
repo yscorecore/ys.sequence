@@ -13,7 +13,7 @@ namespace YS.Sequence.Impl.SqlServer
         {
         }
 
-        public override async Task<long> GetValueAsync(string name)
+        public override async Task<long> GetValue(string name)
         {
             var nameParam = new SqlParameter("@seqenceName", name);
             var valueParam = new SqlParameter("@currentValue", System.Data.SqlDbType.BigInt)
@@ -29,7 +29,7 @@ namespace YS.Sequence.Impl.SqlServer
             return Convert.ToInt64(valueParam.Value);
         }
 
-        public override async Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
+        public override async Task<long> GetOrCreateValue(string name, SequenceInfo sequenceInfo)
         {
             sequenceInfo = sequenceInfo ?? YS.Sequence.SequenceInfo.Default;
             var nameParam = new SqlParameter("@seqenceName", name);

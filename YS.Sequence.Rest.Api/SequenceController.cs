@@ -21,29 +21,29 @@ namespace YS.Sequence.Rest.Api
         }
         [Route("{key}")]
         [HttpGet]
-        public Task<long> GetValueAsync([FromRoute]string key)
+        public Task<long> GetValue([FromRoute]string key)
         {
-            return this.Delegater.GetValueAsync(key);
+            return this.Delegater.GetValue(key);
         }
         [Route("{key}/assert")]
         [HttpGet]
-        public Task<long> GetValueOrCreateAsync([FromRoute]string key, [FromQuery]SequenceInfo sequenceInfo)
+        public Task<long> GetOrCreateValue([FromRoute]string key, [FromQuery]SequenceInfo sequenceInfo)
         {
-            return this.Delegater.GetValueOrCreateAsync(key, sequenceInfo);
+            return this.Delegater.GetOrCreateValue(key, sequenceInfo);
         }
 
         [Route("{key}")]
         [HttpDelete]
-        public Task<bool> RemoveAsync([FromRoute]string key)
+        public Task<bool> Remove([FromRoute]string key)
         {
-            return this.Delegater.RemoveAsync(key);
+            return this.Delegater.Remove(key);
         }
 
         [Route("{key}/reset")]
         [HttpPut]
-        public Task<bool> ResetAsync([FromRoute]string key)
+        public Task<bool> Reset([FromRoute]string key)
         {
-            return this.Delegater.ResetAsync(key);
+            return this.Delegater.Reset(key);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, SequenceInfo.Default);
-            var removeResult = await this.TestObject.RemoveAsync(name);
+            var removeResult = await this.TestObject.Remove(name);
             Assert.IsTrue(removeResult);
             Assert.IsFalse(await this.TestObject.ExistsAsync(name));
         }
@@ -62,7 +62,7 @@ namespace YS.Sequence.Core.UnitTest
         public async Task ShouldReturnFalseWhenRemoveNoExistsSequence()
         {
             var name = RandomUtility.RandomCode(10);
-            var removeResult = await this.TestObject.RemoveAsync(name);
+            var removeResult = await this.TestObject.Remove(name);
             Assert.IsFalse(removeResult);
         }
         #endregion
@@ -100,12 +100,12 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, SequenceInfo.Default);
-            await this.TestObject.GetValueAsync(name); //return 1
-            await this.TestObject.GetValueAsync(name); //return 2
-            var res = await this.TestObject.ResetAsync(name);
+            await this.TestObject.GetValue(name); //return 1
+            await this.TestObject.GetValue(name); //return 2
+            var res = await this.TestObject.Reset(name);
             Assert.IsTrue(res);
             // after reset and get value, it should be the default value
-            var value = await this.TestObject.GetValueAsync(name);
+            var value = await this.TestObject.GetValue(name);
             Assert.AreEqual(SequenceInfo.Default.StartValue, value);
         }
 
@@ -115,7 +115,7 @@ namespace YS.Sequence.Core.UnitTest
         public async Task ShouldReturnFalseWhenResetNoExistsSequence()
         {
             var name = RandomUtility.RandomCode(10);
-            var res = await this.TestObject.ResetAsync(name);
+            var res = await this.TestObject.Reset(name);
             Assert.IsFalse(res);
         }
         #endregion
@@ -128,7 +128,7 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100 });
-            var value = await this.TestObject.GetValueAsync(name);
+            var value = await this.TestObject.GetValue(name);
             Assert.AreEqual(100, value);
         }
         [TestCategory("GetValue")]
@@ -137,9 +137,9 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 999, Step = 0 });
-            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(999, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(999, await this.TestObject.GetValue(name));
+            Assert.AreEqual(999, await this.TestObject.GetValue(name));
+            Assert.AreEqual(999, await this.TestObject.GetValue(name));
         }
 
         [TestCategory("GetValue")]
@@ -148,10 +148,10 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5 });
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(110, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(115, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(105, await this.TestObject.GetValue(name));
+            Assert.AreEqual(110, await this.TestObject.GetValue(name));
+            Assert.AreEqual(115, await this.TestObject.GetValue(name));
         }
 
         [TestCategory("GetValue")]
@@ -160,11 +160,11 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5, EndValue = 110 });
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(110, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(105, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(105, await this.TestObject.GetValue(name));
+            Assert.AreEqual(110, await this.TestObject.GetValue(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(105, await this.TestObject.GetValue(name));
         }
 
         [TestCategory("GetValue")]
@@ -173,10 +173,10 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5 });
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(85, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(95, await this.TestObject.GetValue(name));
+            Assert.AreEqual(90, await this.TestObject.GetValue(name));
+            Assert.AreEqual(85, await this.TestObject.GetValue(name));
         }
 
         [TestCategory("GetValue")]
@@ -185,11 +185,11 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5, EndValue = 90 });
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(95, await this.TestObject.GetValue(name));
+            Assert.AreEqual(90, await this.TestObject.GetValue(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(95, await this.TestObject.GetValue(name));
         }
         #endregion
 
@@ -200,7 +200,7 @@ namespace YS.Sequence.Core.UnitTest
         public async Task ShouldReturnStartValueWhenGetValueOrCreateNewSequence()
         {
             var name = RandomUtility.RandomCode(10);
-            var value = await this.TestObject.GetValueOrCreateAsync(name, new SequenceInfo() { StartValue = 100,Step=2, EndValue=200 });
+            var value = await this.TestObject.GetOrCreateValue(name, new SequenceInfo() { StartValue = 100,Step=2, EndValue=200 });
             Assert.AreEqual(100, value);
             var sequenceInfo = await this.TestObject.GetSequence(name);
             Assert.AreEqual(100, sequenceInfo.StartValue);
@@ -214,7 +214,7 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, SequenceInfo.Default);
-            var value = await this.TestObject.GetValueOrCreateAsync(name, new SequenceInfo() { StartValue = 100, Step = 2, EndValue = 200 });
+            var value = await this.TestObject.GetOrCreateValue(name, new SequenceInfo() { StartValue = 100, Step = 2, EndValue = 200 });
             Assert.AreEqual(1, value);
             var sequenceInfo = await this.TestObject.GetSequence(name);
             Assert.AreEqual(1, sequenceInfo.StartValue);
@@ -231,9 +231,9 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 999, Step = 0 });
-            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name,SequenceInfo.Default));
-            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(999, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name,SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
         }
 
         [TestCategory("GetValueOrCreate")]
@@ -242,10 +242,10 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5 });
-            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(110, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(115, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(110, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(115, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
         }
 
         [TestCategory("GetValueOrCreate")]
@@ -254,11 +254,11 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = 5, EndValue = 110 });
-            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(110, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(105, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(110, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(105, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
         }
 
         [TestCategory("GetValueOrCreate")]
@@ -267,10 +267,10 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5 });
-            Assert.AreEqual(100, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(95, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(90, await this.TestObject.GetValueAsync(name));
-            Assert.AreEqual(85, await this.TestObject.GetValueAsync(name));
+            Assert.AreEqual(100, await this.TestObject.GetValue(name));
+            Assert.AreEqual(95, await this.TestObject.GetValue(name));
+            Assert.AreEqual(90, await this.TestObject.GetValue(name));
+            Assert.AreEqual(85, await this.TestObject.GetValue(name));
         }
 
         [TestCategory("GetValueOrCreate")]
@@ -279,11 +279,11 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 100, Step = -5, EndValue = 90 });
-            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(95, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(90, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(100, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
-            Assert.AreEqual(95, await this.TestObject.GetValueOrCreateAsync(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(95, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(90, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(100, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
+            Assert.AreEqual(95, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
         }
         #endregion
 

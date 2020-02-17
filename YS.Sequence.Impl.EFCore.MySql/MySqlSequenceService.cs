@@ -11,7 +11,7 @@ namespace YS.Sequence.Impl.EFCore.MySql
         public MySqlSequenceService(SequenceContext sequenceContext) : base(sequenceContext)
         {
         }
-        public override Task<long> GetValueAsync(string name)
+        public override Task<long> GetValue(string name)
         {
             var nameParam = new MySqlParameter("seqence_name", name);
             var valueParam = new MySqlParameter("current_value", System.Data.SqlDbType.BigInt)
@@ -22,7 +22,7 @@ namespace YS.Sequence.Impl.EFCore.MySql
             return Task.FromResult(Convert.ToInt64(valueParam.Value));
         }
 
-        public override Task<long> GetValueOrCreateAsync(string name, Sequence.SequenceInfo sequenceInfo)
+        public override Task<long> GetOrCreateValue(string name, Sequence.SequenceInfo sequenceInfo)
         {
             sequenceInfo = sequenceInfo ?? YS.Sequence.SequenceInfo.Default;
             var nameParam = new MySqlParameter("seqence_name", name);

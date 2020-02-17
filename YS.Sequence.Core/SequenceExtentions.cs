@@ -6,7 +6,7 @@ namespace YS.Sequence
     {
         public static Task<long> GetValueOrCreateAsync(this ISequenceService sequenceService, string name, long startValue = 1L, int step = 1, long? endValue = null)
         {
-            return sequenceService.GetValueOrCreateAsync(name,
+            return sequenceService.GetOrCreateValue(name,
                 new SequenceInfo
                 {
                     StartValue = startValue,

@@ -49,7 +49,7 @@ namespace YS.Sequence.Impl.Rest.Client
                   });
         }
 
-        public Task<long> GetValueAsync(string name)
+        public Task<long> GetValue(string name)
         {
             return this.Invoke<long>(
                 new RestApiInfo
@@ -58,7 +58,7 @@ namespace YS.Sequence.Impl.Rest.Client
                     ControllerRoute = "[controller]",
                     Controller = "Sequence",
                     ActionRoute = "{key}",
-                    Action = "GetValueAsync",
+                    Action = "GetValue",
                     Arguments = new List<RestArgument>()
                     {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -66,7 +66,7 @@ namespace YS.Sequence.Impl.Rest.Client
                 });
         }
 
-        public Task<long> GetValueOrCreateAsync(string name, SequenceInfo sequenceInfo)
+        public Task<long> GetOrCreateValue(string name, SequenceInfo sequenceInfo)
         {
             return this.Invoke<long>(
                 new RestApiInfo
@@ -84,7 +84,7 @@ namespace YS.Sequence.Impl.Rest.Client
                 });
         }
 
-        public Task<bool> RemoveAsync(string name)
+        public Task<bool> Remove(string name)
         {
             return this.Invoke<bool>(
                 new RestApiInfo
@@ -101,7 +101,7 @@ namespace YS.Sequence.Impl.Rest.Client
                 });
         }
 
-        public Task<bool> ResetAsync(string name)
+        public Task<bool> Reset(string name)
         {
             return this.Invoke<bool>(
                 new RestApiInfo
