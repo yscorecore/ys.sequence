@@ -1,4 +1,4 @@
-name: tag
+name: package
 on:
   push:
     tags:        
@@ -17,9 +17,9 @@ jobs:
       run: dotnet build
     - name: 04 Run Unit test
       run: dotnet test
-    - name: 05 Set git tag name
+    - name: 05 Set Git Tag Name
       run: echo "::set-env name=GIT_TAG::${GITHUB_REF:10}"
-    - name: 06 Set pack version
+    - name: 06 Set Pack Version
       run: echo "::set-env name=PACK_VERSION::${GIT_TAG#v}"
     - name: 07 Create Package
       run: dotnet pack -p:PackageVersion=${PACK_VERSION} -o .publish --configuration Release
