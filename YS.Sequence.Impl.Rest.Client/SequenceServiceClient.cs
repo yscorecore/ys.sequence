@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Knife.Rest.Client;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace YS.Sequence.Impl.Rest.Client
 {
     [ServiceClass(Lifetime = Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped)]
-    public class SequenceServiceClient : RestClientBase, ISequenceService
+    public class SequenceServiceClient : ClientBase, ISequenceService
     {
         public SequenceServiceClient(IHttpClientFactory httpClientFactory, IOptions<ApiServicesOptions> apiServicesOptions)
             : base(httpClientFactory, apiServicesOptions, "SequenceService")
@@ -16,14 +17,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task CreateSequence(string name, SequenceInfo sequenceInfo)
         {
-            return this.Invoke(
+            return this.SendHttp(
                  new RestApiInfo
                  {
                      Method = HttpMethod.Post,
-                     ControllerRoute = "[controller]",
-                     Controller = "Sequence",
-                     ActionRoute = "{key}",
-                     Action = "CreateSequence",
+                     Path = "Sequence/{key}",
                      Arguments = new List<RestArgument>
                      {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -34,14 +32,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task<SequenceInfo> GetSequence(string name)
         {
-            return this.Invoke<SequenceInfo>(
+            return this.SendHttp<SequenceInfo>(
                   new RestApiInfo
                   {
                       Method = HttpMethod.Get,
-                      ControllerRoute = "[controller]",
-                      Controller = "Sequence",
-                      ActionRoute = "{key}/info",
-                      Action = "GetSequence",
+                      Path = "sequence/{key}/info",
                       Arguments = new List<RestArgument>
                       {
                           new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -51,14 +46,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task<long> GetValue(string name)
         {
-            return this.Invoke<long>(
+            return this.SendHttp<long>(
                 new RestApiInfo
                 {
                     Method = HttpMethod.Get,
-                    ControllerRoute = "[controller]",
-                    Controller = "Sequence",
-                    ActionRoute = "{key}",
-                    Action = "GetValue",
+                    Path = "sequence/{key}",
                     Arguments = new List<RestArgument>()
                     {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -68,14 +60,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task<long> GetOrCreateValue(string name, SequenceInfo sequenceInfo)
         {
-            return this.Invoke<long>(
+            return this.SendHttp<long>(
                 new RestApiInfo
                 {
                     Method = HttpMethod.Get,
-                    ControllerRoute = "[controller]",
-                    Controller = "Sequence",
-                    ActionRoute = "{key}/assert",
-                    Action = "GetValueOrCreateAsync",
+                    Path = "sequence/{key}/assert",
                     Arguments = new List<RestArgument>()
                     {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -86,14 +75,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task<bool> Remove(string name)
         {
-            return this.Invoke<bool>(
+            return this.SendHttp<bool>(
                 new RestApiInfo
                 {
                     Method = HttpMethod.Delete,
-                    ControllerRoute = "[controller]",
-                    Controller = "Sequence",
-                    ActionRoute = "{key}",
-                    Action = "RemoveAsync",
+                    Path = "sequence/{key}",
                     Arguments = new List<RestArgument>()
                     {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
@@ -103,14 +89,11 @@ namespace YS.Sequence.Impl.Rest.Client
 
         public Task<bool> Reset(string name)
         {
-            return this.Invoke<bool>(
+            return this.SendHttp<bool>(
                 new RestApiInfo
                 {
                     Method = HttpMethod.Put,
-                    ControllerRoute = "[controller]",
-                    Controller = "Sequence",
-                    ActionRoute = "{key}/reset",
-                    Action = "RemoveAsync",
+                    Path = "sequence/{key}/reset",
                     Arguments = new List<RestArgument>()
                     {
                         new RestArgument("key", ArgumentSource.FromRouter, name),
