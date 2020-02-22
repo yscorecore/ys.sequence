@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace YS.Sequence.Impl.EFCore.MySql
 {
-    [ServiceClass(Lifetime = Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped)]
+    [ServiceClass()]
     public class MySqlSequenceService : BaseSequenceService
     {
         public MySqlSequenceService(SequenceContext sequenceContext) : base(sequenceContext)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace YS.Sequence.Impl.Rest.Client
 {
-    [ServiceClass(Lifetime = Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped)]
+    [ServiceClass()]
     public class SequenceServiceClient : ClientBase, ISequenceService
     {
         public SequenceServiceClient(IHttpClientFactory httpClientFactory, IOptions<ApiServicesOptions> apiServicesOptions)

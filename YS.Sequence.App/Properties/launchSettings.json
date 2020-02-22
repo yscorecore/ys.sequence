@@ -10,15 +10,15 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "commandLineArgs": "install",
       "launchBrowser": true,
       "launchUrl": "sequence/abc",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "YS.Sequence.MicroService": {
+    "YS.Sequence.App": {
       "commandName": "Project",
+      "commandLineArgs": "run",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
