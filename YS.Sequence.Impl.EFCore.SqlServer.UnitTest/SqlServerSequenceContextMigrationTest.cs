@@ -1,19 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Knife.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using YS.Knife.EntityFrameworkCore.MSTest;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer.UnitTest
 {
     [TestClass]
-    public class SqlServerSequenceContextMigrationTest:MigrationTestBase<SequenceContext>
+    public class SqlServerSequenceContextMigrationTest:KnifeHost
     {
+        [TestMethod]
+        public void ShouldSuccessWhenMigrationDownByStep()
+        {
+            this.Get<SequenceContext>().MigrateDownByStep();
+        }
+        [TestMethod]
+        public void ShouldSuccessWhenMigrationUpByStep()
+        {
+            this.Get<SequenceContext>().MigrateUpByStep();
+        }
 
-      
     }
 }

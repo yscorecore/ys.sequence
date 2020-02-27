@@ -7,9 +7,8 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
     [TestClass]
     public class SqlServerSequenceServiceTest: SequenceServiceTestBase
     {
-        protected override void OnSetup()
+        public SqlServerSequenceServiceTest()
         {
-            base.OnSetup();
             this.Get<SequenceContext>().Database.Migrate();
         }
 

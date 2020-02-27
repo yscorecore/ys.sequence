@@ -1,13 +1,13 @@
 
-using Knife.WebHosting;
+using Knife.Hosting;
 
-namespace YS.Sequence.MicroService
+namespace YS.Sequence.App
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Host.Run(args);
+            KnifeWebHost.Start(args);
         }
     }
 }

@@ -13,8 +13,9 @@ services:
       dockerfile: YS.Sequence.App/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      Stage: install
       ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
-    entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll install"
+    entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll"
   api:
     depends_on: 
       - db

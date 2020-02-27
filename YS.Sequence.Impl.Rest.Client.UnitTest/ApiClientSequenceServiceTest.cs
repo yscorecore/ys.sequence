@@ -9,9 +9,6 @@ namespace YS.Sequence.Impl.Rest.Client.UnitTest
     [TestClass]
     public class ApiClientSequenceServiceTest : SequenceServiceTestBase
     {
-        protected override void OnSetup()
-        {
-            base.OnSetup();
-        }
+       
     }
 }

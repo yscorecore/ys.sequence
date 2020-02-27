@@ -7,11 +7,9 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
     [TestClass]
     public class MySqlSequenceServiceTest : SequenceServiceTestBase
     {
-        protected override void OnSetup()
+        public MySqlSequenceServiceTest()
         {
-            base.OnSetup();
             this.Get<SequenceContext>().Database.Migrate();
         }
-
     }
 }

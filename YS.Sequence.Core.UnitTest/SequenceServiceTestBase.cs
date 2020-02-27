@@ -1,12 +1,17 @@
-﻿using Knife.Hosting.MSTest;
+﻿using Knife.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
 
 namespace YS.Sequence.Core.UnitTest
 {
-    public abstract class SequenceServiceTestBase : TestBase<ISequenceService>
+    public abstract class SequenceServiceTestBase : KnifeHost
     {
+        public SequenceServiceTestBase()
+        {
+            this.TestObject = Get<ISequenceService>();
+        }
+        private ISequenceService TestObject;
         #region Create
         [TestCategory("Create")]
         [TestMethod]

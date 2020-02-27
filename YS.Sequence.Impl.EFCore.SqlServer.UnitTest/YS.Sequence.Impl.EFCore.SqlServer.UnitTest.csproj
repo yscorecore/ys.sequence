@@ -30,7 +30,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="YS.Knife.EntityframeworkCore.MSTest" Version="1.1.1" />
+    <PackageReference Include="YS.Knife.Test" Version="1.1.2" />
+
   </ItemGroup>
 
   <ItemGroup>

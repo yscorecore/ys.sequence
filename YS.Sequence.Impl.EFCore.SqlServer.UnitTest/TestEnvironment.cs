@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Knife.Test;
+using Microsoft.Data.SqlClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
