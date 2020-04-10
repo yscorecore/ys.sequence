@@ -3,29 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Core", "YS.Sequence.Core\YS.Sequence.Core.csproj", "{46FD58B1-AC1B-4DB6-8494-3903C7C05DE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Core", "src\YS.Sequence.Core\YS.Sequence.Core.csproj", "{46FD58B1-AC1B-4DB6-8494-3903C7C05DE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.App", "YS.Sequence.App\YS.Sequence.App.csproj", "{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.App", "src\YS.Sequence.App\YS.Sequence.App.csproj", "{8EE04CA8-957E-4F0A-A4AF-D3AFF1A0A7BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore", "YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj", "{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore", "src\YS.Sequence.Impl.EFCore\YS.Sequence.Impl.EFCore.csproj", "{6D176DAC-5A56-4AFA-BF87-1C339BB2BECD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer", "YS.Sequence.Impl.EFCore.SqlServer\YS.Sequence.Impl.EFCore.SqlServer.csproj", "{03ACD6DF-3666-456C-B86E-D60088AADC35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer", "src\YS.Sequence.Impl.EFCore.SqlServer\YS.Sequence.Impl.EFCore.SqlServer.csproj", "{03ACD6DF-3666-456C-B86E-D60088AADC35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.MySql", "YS.Sequence.Impl.EFCore.MySql\YS.Sequence.Impl.EFCore.MySql.csproj", "{83D295F5-FC40-4393-8087-0CD466919969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.MySql", "src\YS.Sequence.Impl.EFCore.MySql\YS.Sequence.Impl.EFCore.MySql.csproj", "{83D295F5-FC40-4393-8087-0CD466919969}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{19927E13-A294-4524-94A2-2F79C18A8736}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer.UnitTest", "YS.Sequence.Impl.EFCore.SqlServer.UnitTest\YS.Sequence.Impl.EFCore.SqlServer.UnitTest.csproj", "{DB4ED648-7FEB-4C7E-B17B-8C30F6D68512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.SqlServer.UnitTest", "test\YS.Sequence.Impl.EFCore.SqlServer.UnitTest\YS.Sequence.Impl.EFCore.SqlServer.UnitTest.csproj", "{DB4ED648-7FEB-4C7E-B17B-8C30F6D68512}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Core.UnitTest", "YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj", "{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Core.UnitTest", "test\YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj", "{1297EB8E-BA05-476F-A6E6-0CC02E348D3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.MySql.UnitTest", "YS.Sequence.Impl.EFCore.MySql.UnitTest\YS.Sequence.Impl.EFCore.MySql.UnitTest.csproj", "{9317F6A7-CBC7-40F1-8D44-89E96DC59175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.EFCore.MySql.UnitTest", "test\YS.Sequence.Impl.EFCore.MySql.UnitTest\YS.Sequence.Impl.EFCore.MySql.UnitTest.csproj", "{9317F6A7-CBC7-40F1-8D44-89E96DC59175}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.Rest.Client.UnitTest", "YS.Sequence.Impl.Rest.Client.UnitTest\YS.Sequence.Impl.Rest.Client.UnitTest.csproj", "{E38C65D0-507C-4587-AF5A-F4A0B5244E38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.Rest.Client.UnitTest", "test\YS.Sequence.Impl.Rest.Client.UnitTest\YS.Sequence.Impl.Rest.Client.UnitTest.csproj", "{E38C65D0-507C-4587-AF5A-F4A0B5244E38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.Rest.Client", "YS.Sequence.Impl.Rest.Client\YS.Sequence.Impl.Rest.Client.csproj", "{653D13CC-6F95-421D-B217-4C7CD7D13BC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Impl.Rest.Client", "src\YS.Sequence.Impl.Rest.Client\YS.Sequence.Impl.Rest.Client.csproj", "{653D13CC-6F95-421D-B217-4C7CD7D13BC1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Rest.Api", "YS.Sequence.Rest.Api\YS.Sequence.Rest.Api.csproj", "{7F67B7AC-DBE4-4135-9786-A4E11CC10678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.Sequence.Rest.Api", "src\YS.Sequence.Rest.Api\YS.Sequence.Rest.Api.csproj", "{7F67B7AC-DBE4-4135-9786-A4E11CC10678}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
