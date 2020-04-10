@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YS.Sequence.Core\YS.Sequence.Core.csproj" />
+    <ProjectReference Include="..\..\src\YS.Sequence.Core\YS.Sequence.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YS.Sequence.Core.UnitTest\YS.Sequence.Core.UnitTest.csproj" />
-    <ProjectReference Include="..\YS.Sequence.Impl.Rest.Client\YS.Sequence.Impl.Rest.Client.csproj" />
+    <ProjectReference Include="..\..\src\YS.Sequence.Impl.Rest.Client\YS.Sequence.Impl.Rest.Client.csproj" />
   </ItemGroup>
 
 </Project>
