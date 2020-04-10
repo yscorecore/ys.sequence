@@ -45,6 +45,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
             Task.Delay(90000).Wait();
         }
 
-     
+
     }
 }

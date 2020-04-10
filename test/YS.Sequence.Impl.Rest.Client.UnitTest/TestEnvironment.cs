@@ -19,7 +19,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
             StartContainer(availablePort);
         }
 
-       [AssemblyCleanup()]
+        [AssemblyCleanup()]
         public static void TearDown()
         {
             DockerCompose.Down();
@@ -37,9 +37,9 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
                 ["API_PORT"] = port,
             });
             // delay 90s ,wait for container ready
-             Task.Delay(90000).Wait();
+            Task.Delay(90000).Wait();
         }
 
-     
+
     }
 }

@@ -9,7 +9,7 @@ namespace YS.Sequence.Impl.SqlServer
     [ServiceClass()]
     public class SqlServerSequenceService : BaseSequenceService
     {
-        public SqlServerSequenceService(SequenceContext sequenceContext):base(sequenceContext)
+        public SqlServerSequenceService(SequenceContext sequenceContext) : base(sequenceContext)
         {
         }
 

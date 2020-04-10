@@ -43,7 +43,7 @@ namespace YS.Sequence.Impl.EFCore.MySql
             return Task.FromResult(Convert.ToInt64(valueParam.Value));
         }
 
-   
+
     }
 
 

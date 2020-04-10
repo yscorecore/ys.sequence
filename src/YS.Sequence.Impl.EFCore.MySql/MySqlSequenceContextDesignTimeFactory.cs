@@ -5,7 +5,7 @@ using System.Text;
 
 namespace YS.Sequence.Impl.EFCore.MySql
 {
-    public class MySqlSequenceContextDesignTimeFactory: MySqlDesignTimeDbContextFactory<MySqlSequenceContext>
+    public class MySqlSequenceContextDesignTimeFactory : MySqlDesignTimeDbContextFactory<MySqlSequenceContext>
     {
     }
 }

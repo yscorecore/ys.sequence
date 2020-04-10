@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace YS.Sequence.Impl.EFCore.SqlServer.UnitTest
 {
     [TestClass]
-    public class SqlServerSequenceContextMigrationTest:KnifeHost
+    public class SqlServerSequenceContextMigrationTest : KnifeHost
     {
         [TestMethod]
         public void ShouldSuccessWhenMigrationDownByStep()

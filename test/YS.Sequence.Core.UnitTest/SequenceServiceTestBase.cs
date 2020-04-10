@@ -205,12 +205,12 @@ namespace YS.Sequence.Core.UnitTest
         public async Task ShouldReturnStartValueWhenGetValueOrCreateNewSequence()
         {
             var name = RandomUtility.RandomCode(10);
-            var value = await this.TestObject.GetOrCreateValue(name, new SequenceInfo() { StartValue = 100,Step=2, EndValue=200 });
+            var value = await this.TestObject.GetOrCreateValue(name, new SequenceInfo() { StartValue = 100, Step = 2, EndValue = 200 });
             Assert.AreEqual(100, value);
             var sequenceInfo = await this.TestObject.GetSequence(name);
             Assert.AreEqual(100, sequenceInfo.StartValue);
             Assert.AreEqual(2, sequenceInfo.Step);
-            Assert.AreEqual(200,sequenceInfo.EndValue);
+            Assert.AreEqual(200, sequenceInfo.EndValue);
         }
 
         [TestCategory("GetValueOrCreate")]
@@ -236,7 +236,7 @@ namespace YS.Sequence.Core.UnitTest
         {
             var name = RandomUtility.RandomCode(10);
             await this.TestObject.CreateSequence(name, new SequenceInfo() { StartValue = 999, Step = 0 });
-            Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name,SequenceInfo.Default));
+            Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
             Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
             Assert.AreEqual(999, await this.TestObject.GetOrCreateValue(name, SequenceInfo.Default));
         }

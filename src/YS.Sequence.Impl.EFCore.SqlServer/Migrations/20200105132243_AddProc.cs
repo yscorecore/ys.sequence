@@ -9,7 +9,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
         static IDictionary<string, string> Procs = new Dictionary<string, string>
         {
             ["GetOrCreateSequenceValue"] = "GetOrCreateSequenceValue.sql",
-            ["GetSequenceValue"]= "GetSequenceValue.sql"
+            ["GetSequenceValue"] = "GetSequenceValue.sql"
 
         };
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
                 migrationBuilder.Sql(GetSqlStringFromResource(procResourceName));
             }
         }
-       
-      
+
+
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             foreach (var procName in Procs.Keys.Reverse())
@@ -40,6 +40,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
             }
         }
 
-      
+
     }
 }

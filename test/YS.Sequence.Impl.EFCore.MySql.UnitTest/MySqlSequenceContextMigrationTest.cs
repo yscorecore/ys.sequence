@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
 {
     [TestClass]
-    public class MySqlSequenceContextMigrationTest :KnifeHost
+    public class MySqlSequenceContextMigrationTest : KnifeHost
     {
         [TestMethod]
         public void ShouldSuccessWhenMigrationDownByStep()

@@ -9,6 +9,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
 {
     public class SqlServerSequenceContextDesignTimeFactory : SqlServerDesignTimeDbContextFactory<SqlServerSequenceContext>
     {
-       
+
     }
 }

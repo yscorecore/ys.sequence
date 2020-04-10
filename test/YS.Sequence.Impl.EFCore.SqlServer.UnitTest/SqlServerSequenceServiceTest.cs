@@ -5,7 +5,7 @@ using YS.Sequence.Core.UnitTest;
 namespace YS.Sequence.Impl.EFCore.SqlServer
 {
     [TestClass]
-    public class SqlServerSequenceServiceTest: SequenceServiceTestBase
+    public class SqlServerSequenceServiceTest : SequenceServiceTestBase
     {
         public SqlServerSequenceServiceTest()
         {
