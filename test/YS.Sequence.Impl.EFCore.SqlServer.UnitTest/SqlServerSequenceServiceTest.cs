@@ -9,7 +9,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
     {
         public SqlServerSequenceServiceTest()
         {
-            this.Get<SequenceContext>().Database.Migrate();
+            this.GetService<SequenceContext>().Database.Migrate();
         }
 
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
+using YS.Knife;
 using YS.Sequence.Impl.EFCore;
 
 namespace YS.Sequence.Impl.SqlServer

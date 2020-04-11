@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using YS.Knife;
 
 namespace YS.Sequence.Impl.EFCore
 {

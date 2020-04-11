@@ -1,6 +1,6 @@
-﻿using Knife.Hosting;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using YS.Knife.Hosting;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer.UnitTest
 {
@@ -10,12 +10,12 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.UnitTest
         [TestMethod]
         public void ShouldSuccessWhenMigrationDownByStep()
         {
-            this.Get<SequenceContext>().MigrateDownByStep();
+            this.GetService<SequenceContext>().MigrateDownByStep();
         }
         [TestMethod]
         public void ShouldSuccessWhenMigrationUpByStep()
         {
-            this.Get<SequenceContext>().MigrateUpByStep();
+            this.GetService<SequenceContext>().MigrateUpByStep();
         }
 
     }

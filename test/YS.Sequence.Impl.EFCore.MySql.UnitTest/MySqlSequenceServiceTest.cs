@@ -9,7 +9,7 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
     {
         public MySqlSequenceServiceTest()
         {
-            this.Get<SequenceContext>().Database.Migrate();
+            this.GetService<SequenceContext>().Database.Migrate();
         }
     }
 }

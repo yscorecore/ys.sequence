@@ -1,4 +1,4 @@
-﻿using Knife.Hosting;
+﻿using YS.Knife.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace YS.Sequence.Core.UnitTest
     {
         public SequenceServiceTestBase()
         {
-            this.TestObject = Get<ISequenceService>();
+            this.TestObject = GetService<ISequenceService>();
         }
         private ISequenceService TestObject;
         #region Create

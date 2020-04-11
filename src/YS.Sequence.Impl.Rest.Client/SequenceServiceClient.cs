@@ -1,9 +1,10 @@
-﻿using Knife.Rest.Client;
+﻿using YS.Knife.Rest.Client;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using YS.Knife;
 
 namespace YS.Sequence.Impl.Rest.Client
 {

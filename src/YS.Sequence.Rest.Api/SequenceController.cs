@@ -1,6 +1,6 @@
-﻿using Knife.Api;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using YS.Knife.Api;
 
 namespace YS.Sequence.Rest.Api
 {

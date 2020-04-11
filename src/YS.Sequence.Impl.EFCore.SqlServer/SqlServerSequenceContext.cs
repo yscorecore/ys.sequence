@@ -6,7 +6,7 @@ using System.Text;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer
 {
-    [SqlServerDbContextClass("SequenceContext", InjectType = typeof(SequenceContext))]
+    [SqlServerDbContextClass("SequenceContext")]
     public class SqlServerSequenceContext : SequenceContext
     {
         public SqlServerSequenceContext(DbContextOptions<SqlServerSequenceContext> dbContextOptions) : base(dbContextOptions)

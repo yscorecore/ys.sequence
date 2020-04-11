@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Threading.Tasks;
+using YS.Knife;
 
 namespace YS.Sequence.Impl.EFCore.MySql
 {
