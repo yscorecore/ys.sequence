@@ -7,6 +7,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            _ = migrationBuilder ?? throw new ArgumentNullException(nameof(migrationBuilder));
             migrationBuilder.CreateTable(
                 name: "Sequences",
                 columns: table => new
@@ -32,6 +33,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            _ = migrationBuilder ?? throw new ArgumentNullException(nameof(migrationBuilder));
             migrationBuilder.DropTable(
                 name: "Sequences");
         }

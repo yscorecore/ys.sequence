@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer.Migrations
         };
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            _ = migrationBuilder ?? throw new ArgumentNullException(nameof(migrationBuilder));
             foreach (var procResourceName in Procs.Values)
             {
                 migrationBuilder.Sql(GetSqlStringFromResource(procResourceName));

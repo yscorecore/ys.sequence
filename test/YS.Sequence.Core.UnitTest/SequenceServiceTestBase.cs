@@ -11,7 +11,7 @@ namespace YS.Sequence.Core.UnitTest
         {
             this.TestObject = GetService<ISequenceService>();
         }
-        private ISequenceService TestObject;
+        private readonly ISequenceService TestObject;
         #region Create
         [TestCategory("Create")]
         [TestMethod]

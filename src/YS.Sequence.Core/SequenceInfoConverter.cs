@@ -31,24 +31,24 @@ namespace YS.Sequence
                 {
                     return new SequenceInfo()
                     {
-                        StartValue = long.Parse(items[0].Trim())
+                        StartValue = long.Parse(items[0].Trim(), CultureInfo.InvariantCulture)
                     };
                 }
                 else if (items.Length == 2)
                 {
                     return new SequenceInfo()
                     {
-                        StartValue = long.Parse(items[0].Trim()),
-                        Step = int.Parse(items[1].Trim())
+                        StartValue = long.Parse(items[0].Trim(), CultureInfo.InvariantCulture),
+                        Step = int.Parse(items[1].Trim(), CultureInfo.InvariantCulture)
                     };
                 }
                 else if (items.Length == 3)
                 {
                     return new SequenceInfo()
                     {
-                        StartValue = long.Parse(items[0].Trim()),
-                        Step = int.Parse(items[1].Trim()),
-                        EndValue = long.Parse(items[2].Trim())
+                        StartValue = long.Parse(items[0].Trim(), CultureInfo.InvariantCulture),
+                        Step = int.Parse(items[1].Trim(), CultureInfo.InvariantCulture),
+                        EndValue = long.Parse(items[2].Trim(), CultureInfo.InvariantCulture)
                     };
                 }
                 else
@@ -60,7 +60,7 @@ namespace YS.Sequence
         }
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType == typeof(string))
+            if (destinationType == typeof(string) && value is SequenceInfo)
             {
                 var sequenceInfo = value as SequenceInfo;
                 return sequenceInfo.EndValue.HasValue ? $"{sequenceInfo.StartValue},{sequenceInfo.Step},{sequenceInfo.EndValue}" : $"{sequenceInfo.StartValue},{sequenceInfo.Step}";
