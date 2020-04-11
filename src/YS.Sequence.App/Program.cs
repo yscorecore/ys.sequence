@@ -1,5 +1,5 @@
 ﻿
-using Knife.Hosting;
+using YS.Knife.Hosting;
 
 namespace YS.Sequence.App
 {
