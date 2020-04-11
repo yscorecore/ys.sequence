@@ -8,9 +8,9 @@ namespace YS.Sequence.Impl.EFCore
     {
         public BaseSequenceService(SequenceContext sequenceContext)
         {
-            this.sequenceContext = sequenceContext;
+            this.SequenceContext = sequenceContext;
         }
-        protected SequenceContext sequenceContext;
+        protected SequenceContext SequenceContext { get; }
 
 
         public async Task CreateSequence(string name, YS.Sequence.SequenceInfo sequenceInfo)
@@ -28,20 +28,20 @@ namespace YS.Sequence.Impl.EFCore
                 EndValue = sequenceInfo.EndValue,
                 Name = name
             };
-            sequenceContext.Sequences.Add(row);
-            await sequenceContext.SaveChangesAsync();
+            SequenceContext.Sequences.Add(row);
+            await SequenceContext.SaveChangesAsync();
 
-            sequenceContext.Entry(row).DetectChanges();
+            SequenceContext.Entry(row).DetectChanges();
         }
 
         public async Task<bool> Reset(string name)
         {
-            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
+            var entity = await SequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
             {
                 entity.CurrentValue = null;
-                this.sequenceContext.Entry(entity).Property(p => p.CurrentValue).IsModified = true;
-                await sequenceContext.SaveChangesAsync();
+                this.SequenceContext.Entry(entity).Property(p => p.CurrentValue).IsModified = true;
+                await SequenceContext.SaveChangesAsync();
                 return true;
             }
             else
@@ -52,11 +52,11 @@ namespace YS.Sequence.Impl.EFCore
 
         public async Task<bool> Remove(string name)
         {
-            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
+            var entity = await SequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
             {
-                sequenceContext.Sequences.Remove(entity);
-                var changeRows = await sequenceContext.SaveChangesAsync();
+                SequenceContext.Sequences.Remove(entity);
+                var changeRows = await SequenceContext.SaveChangesAsync();
                 return Convert.ToBoolean(changeRows);
             }
             else
@@ -67,7 +67,7 @@ namespace YS.Sequence.Impl.EFCore
 
         public async Task<bool> ExistsAsync(string name)
         {
-            var totalCount = await this.sequenceContext.Sequences.CountAsync(p => p.Name == name);
+            var totalCount = await this.SequenceContext.Sequences.CountAsync(p => p.Name == name);
             return totalCount > 0;
         }
         public abstract Task<long> GetValue(string name);
@@ -75,7 +75,7 @@ namespace YS.Sequence.Impl.EFCore
 
         public async Task<Sequence.SequenceInfo> GetSequence(string name)
         {
-            var entity = await sequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
+            var entity = await SequenceContext.Sequences.SingleOrDefaultAsync(p => p.Name == name);
             if (entity != null)
             {
                 return new Sequence.SequenceInfo()

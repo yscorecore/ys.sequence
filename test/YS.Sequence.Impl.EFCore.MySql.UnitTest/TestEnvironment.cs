@@ -1,12 +1,8 @@
-﻿using YS.Knife.Test;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Threading.Tasks;
 using YS.Knife.Test;
 
 namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
@@ -15,7 +11,7 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
     public class TestEnvironment
     {
         [AssemblyInitialize()]
-        public static void Setup(TestContext assemblyTestContext)
+        public static void Setup(TestContext _)
         {
             var availablePort = Utility.GetAvailableTcpPort(3306);
             var password = Utility.NewPassword(32);
@@ -42,12 +38,14 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
         }
         private static void SetConnectionString(uint port, string password)
         {
-            var mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
-            mySqlConnectionStringBuilder.Server = "127.0.0.1";
-            mySqlConnectionStringBuilder.Port = port;
-            mySqlConnectionStringBuilder.Database = "SequenceContext";
-            mySqlConnectionStringBuilder.UserID = "root";
-            mySqlConnectionStringBuilder.Password = password;
+            var mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder
+            {
+                Server = "127.0.0.1",
+                Port = port,
+                Database = "SequenceContext",
+                UserID = "root",
+                Password = password
+            };
             Environment.SetEnvironmentVariable("ConnectionStrings__@DbType", "mysql");
             Environment.SetEnvironmentVariable("ConnectionStrings__SequenceContext", mySqlConnectionStringBuilder.ConnectionString);
         }

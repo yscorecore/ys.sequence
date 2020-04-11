@@ -16,6 +16,7 @@ namespace YS.Sequence.Impl.EFCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            _ = modelBuilder ?? throw new ArgumentNullException(nameof(modelBuilder));
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SequenceInfo>().HasIndex(p => p.Name).IsUnique(true);
             modelBuilder.Entity<SequenceInfo>().Property(p => p.Name).IsUnicode(false);

@@ -11,7 +11,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
     {
 
         [AssemblyInitialize()]
-        public static void Setup(TestContext assemblyTestContext)
+        public static void Setup(TestContext _)
         {
             var availablePort = Utility.GetAvailableTcpPort(8080);
             SetServiceBaseAddress(availablePort);

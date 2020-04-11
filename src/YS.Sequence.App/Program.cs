@@ -3,7 +3,7 @@ using YS.Knife.Hosting;
 
 namespace YS.Sequence.App
 {
-    public class Program
+    static class Program
     {
         public static void Main(string[] args)
         {

@@ -21,13 +21,13 @@ namespace YS.Sequence.Impl.SqlServer
             {
                 Direction = System.Data.ParameterDirection.Output
             };
-            await sequenceContext.Database.ExecuteSqlRawAsync("Exec GetSequenceValue @seqenceName, @currentValue OUTPUT",
+            await SequenceContext.Database.ExecuteSqlRawAsync("Exec GetSequenceValue @seqenceName, @currentValue OUTPUT",
                 new SqlParameter[] { nameParam, valueParam });
             if (Convert.IsDBNull(valueParam.Value))
             {
                 throw new InvalidOperationException($"Can not find the sequence named {name}.");
             }
-            return Convert.ToInt64(valueParam.Value);
+            return (long)valueParam.Value;
         }
 
         public override async Task<long> GetOrCreateValue(string name, SequenceInfo sequenceInfo)
@@ -43,18 +43,18 @@ namespace YS.Sequence.Impl.SqlServer
             };
             if (sequenceInfo.EndValue.HasValue)
             {
-                await sequenceContext.Database.ExecuteSqlRawAsync(
+                await SequenceContext.Database.ExecuteSqlRawAsync(
                     "Exec GetOrCreateSequenceValue @seqenceName, @currentValue OUTPUT, @startValue, @endValue, @step",
                     new SqlParameter[] { nameParam, valueParam, startParam, endParam, stepParam });
             }
             else
             {
-                await sequenceContext.Database.ExecuteSqlRawAsync(
+                await SequenceContext.Database.ExecuteSqlRawAsync(
                     "Exec GetOrCreateSequenceValue @seqenceName, @currentValue OUTPUT, @startValue, @step",
                     new SqlParameter[] { nameParam, valueParam, startParam, stepParam });
             }
 
-            return Convert.ToInt64(valueParam.Value);
+            return (long)valueParam.Value;
         }
     }
 }

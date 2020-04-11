@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace YS.Sequence
 {
@@ -6,6 +7,7 @@ namespace YS.Sequence
     {
         public static Task<long> GetValueOrCreateAsync(this ISequenceService sequenceService, string name, long startValue = 1L, int step = 1, long? endValue = null)
         {
+            _ = sequenceService ?? throw new ArgumentNullException(nameof(sequenceService));
             return sequenceService.GetOrCreateValue(name,
                 new SequenceInfo
                 {
@@ -17,6 +19,7 @@ namespace YS.Sequence
 
         public static async Task<bool> ExistsAsync(this ISequenceService sequenceService, string name)
         {
+            _ = sequenceService ?? throw new ArgumentNullException(nameof(sequenceService));
             var sequence = await sequenceService.GetSequence(name);
             return sequence != null;
         }

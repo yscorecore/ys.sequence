@@ -19,8 +19,8 @@ namespace YS.Sequence.Impl.EFCore.MySql
             {
                 Direction = System.Data.ParameterDirection.Output
             };
-            this.sequenceContext.Database.ExecuteStoredProcedureAsNonQuery("GetSequenceValue", nameParam, valueParam);
-            return Task.FromResult(Convert.ToInt64(valueParam.Value));
+            this.SequenceContext.Database.ExecuteStoredProcedureAsNonQuery("GetSequenceValue", nameParam, valueParam);
+            return Task.FromResult((long)valueParam.Value);
         }
 
         public override Task<long> GetOrCreateValue(string name, Sequence.SequenceInfo sequenceInfo)
@@ -34,14 +34,14 @@ namespace YS.Sequence.Impl.EFCore.MySql
             var startParam = new MySqlParameter("start_value", sequenceInfo.StartValue);
             var endParam = new MySqlParameter("end_value", sequenceInfo.EndValue);
             var stepParam = new MySqlParameter("step_value", sequenceInfo.Step);
-            this.sequenceContext.Database.ExecuteStoredProcedureAsNonQuery(
+            this.SequenceContext.Database.ExecuteStoredProcedureAsNonQuery(
                 "GetOrCreateSequenceValue",
                 nameParam,
                 valueParam,
                 startParam,
                 endParam,
                 stepParam);
-            return Task.FromResult(Convert.ToInt64(valueParam.Value));
+            return Task.FromResult((long)valueParam.Value);
         }
 
 

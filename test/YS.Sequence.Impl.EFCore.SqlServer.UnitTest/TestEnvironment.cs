@@ -1,9 +1,8 @@
-﻿using YS.Knife.Test;
-using Microsoft.Data.SqlClient;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using YS.Knife.Test;
 
 namespace YS.Sequence.Impl.EFCore.SqlServer
@@ -12,7 +11,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
     public class TestEnvironment
     {
         [AssemblyInitialize()]
-        public static void Setup(TestContext assemblyTestContext)
+        public static void Setup(TestContext _)
         {
             var availablePort = Utility.GetAvailableTcpPort(1433);
             var password = Utility.NewPassword();
@@ -27,11 +26,13 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
         }
         private static void SetConnectionString(uint port, string password)
         {
-            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
-            sqlConnectionStringBuilder.DataSource = $"127.0.0.1,{port}";
-            sqlConnectionStringBuilder.InitialCatalog = "SequenceContext";
-            sqlConnectionStringBuilder.UserID = "sa";
-            sqlConnectionStringBuilder.Password = password;
+            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = $"127.0.0.1,{port}",
+                InitialCatalog = "SequenceContext",
+                UserID = "sa",
+                Password = password
+            };
             Environment.SetEnvironmentVariable("ConnectionStrings__SequenceContext", sqlConnectionStringBuilder.ConnectionString);
         }
         private static void StartContainer(uint port, string password)
