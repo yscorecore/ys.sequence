@@ -42,12 +42,13 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
         }
         private static void SetConnectionString(uint port, string password)
         {
-            MySqlConnectionStringBuilder mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
+            var mySqlConnectionStringBuilder = new MySqlConnectionStringBuilder();
             mySqlConnectionStringBuilder.Server = "127.0.0.1";
             mySqlConnectionStringBuilder.Port = port;
             mySqlConnectionStringBuilder.Database = "SequenceContext";
             mySqlConnectionStringBuilder.UserID = "root";
             mySqlConnectionStringBuilder.Password = password;
+            Environment.SetEnvironmentVariable("ConnectionStrings__@DbType", "mysql");
             Environment.SetEnvironmentVariable("ConnectionStrings__SequenceContext", mySqlConnectionStringBuilder.ConnectionString);
         }
 

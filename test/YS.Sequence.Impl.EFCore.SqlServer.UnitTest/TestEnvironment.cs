@@ -27,7 +27,7 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
         }
         private static void SetConnectionString(uint port, string password)
         {
-            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
+            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
             sqlConnectionStringBuilder.DataSource = $"127.0.0.1,{port}";
             sqlConnectionStringBuilder.InitialCatalog = "SequenceContext";
             sqlConnectionStringBuilder.UserID = "sa";
