@@ -15,12 +15,5 @@ RUN dotnet publish "YS.Sequence.App" -f netcoreapp3.1 -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN mkdir /tmp/quickcore_tmp && \
-	mkdir /var/log/quickcore_log && \
-	mkdir /quickcore_data
-
-ENV AppFolder__TempFolder /tmp/quickcore_tmp
-ENV AppFolder__LogFolder /var/log/quickcore_log
-ENV AppFolder__DataFolder /quickcore_data
 
 ENTRYPOINT ["dotnet", "YS.Sequence.App.dll"]
