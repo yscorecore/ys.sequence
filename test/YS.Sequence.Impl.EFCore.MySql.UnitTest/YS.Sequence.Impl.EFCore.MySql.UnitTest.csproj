@@ -28,7 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="YS.Knife.Test" Version="1.2.4" />
+    <PackageReference Include="YS.Knife.Test" Version="1.2.5" />
   </ItemGroup>
 
   <ItemGroup>

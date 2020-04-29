@@ -5,17 +5,17 @@ services:
     image: mysql:5.5
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw
-  init_context:
-    depends_on: 
-      - db
-    build: 
-      context: ../../src
-      dockerfile: YS.Sequence.App/Dockerfile
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      Knife__Stage: install
-      ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
-    entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll"
+  # init_context:
+  #   depends_on: 
+  #     - db
+  #   build: 
+  #     context: ../../src
+  #     dockerfile: YS.Sequence.App/Dockerfile
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Development
+  #     Knife__Stage: install
+  #     ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
+  #   entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll"
   api:
     depends_on: 
       - db
@@ -27,3 +27,9 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
+      entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll Knife:Stage=install && dotnet YS.Sequence.App.dll"
+  wait-compose-ready:
+    image: ysknife/wait-compose-ready
+    environment:
+      REPORT_TO_HOST_PORT: ${REPORT_TO_HOST_PORT:-8901}
+      WAIT_HOSTS: db:3306, api:80

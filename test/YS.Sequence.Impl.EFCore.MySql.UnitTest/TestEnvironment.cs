@@ -33,8 +33,6 @@ namespace YS.Sequence.Impl.EFCore.MySql.UnitTest
                 ["MYSQL_PORT"] = port,
                 ["MYSQL_ROOT_PASSWORD"] = password
             });
-            // delay 90s ,wait for mysql container ready
-            Task.Delay(90000).Wait();
         }
         private static void SetConnectionString(uint port, string password)
         {

@@ -42,8 +42,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
                 ["SQLSERVER_PORT"] = port,
                 ["SA_PASSWORD"] = password
             });
-            // delay 90s ,wait for sql server container ready
-            Task.Delay(90000).Wait();
         }
 
 

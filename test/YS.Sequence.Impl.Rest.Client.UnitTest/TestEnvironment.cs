@@ -35,8 +35,6 @@ namespace YS.Sequence.Impl.EFCore.SqlServer
             {
                 ["API_PORT"] = port,
             });
-            // delay 90s ,wait for container ready
-            Task.Delay(90000).Wait();
         }
 
 
