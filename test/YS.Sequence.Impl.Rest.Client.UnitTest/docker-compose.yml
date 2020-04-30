@@ -12,11 +12,13 @@ services:
       context: ../../
       dockerfile: src/YS.Sequence.App/Dockerfile
     ports:
-    - "${API_PORT:-8080}:80"
+      - "${API_PORT:-8080}:80"
+    volumes:
+      - ../../scripts:/scripts
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__SequenceContext: Server=db;Port=3306;Database=SequenceContext; User=root;Password=my-secret-pw;
-    entrypoint: sh -c "sleep 80 && dotnet YS.Sequence.App.dll Knife:Stage=install && dotnet YS.Sequence.App.dll"
+    entrypoint: sh -c "/scripts/wait-for-it.sh db:3306 -- dotnet YS.Sequence.App.dll Knife:Stage=install && dotnet YS.Sequence.App.dll"
   wait-compose-ready:
     image: ysknife/wait-compose-ready
     environment:
